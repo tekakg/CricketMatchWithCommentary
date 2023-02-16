@@ -30,11 +30,17 @@ public class CricketService {
     @Autowired
     SequenceGeneratorService sequenceGeneratorService;
 
+    @Autowired
+    Match match;
 
-    Match match = new Match();
-    Scoreboard scoreboard = new Scoreboard();
-    Team team1 = new Team();
-    Team team2 = new Team();
+    @Autowired
+    Scoreboard scoreboard;
+
+    Team team1=new Team();
+
+    Team team2=new Team();
+
+
 
     public ResponseEntity<String> createMatch(MatchDetail matchDetail) {//Data is directly passed to the database.
         if (matchDetail.getOvers() <= 0) {
@@ -99,7 +105,6 @@ public class CricketService {
     }
 
     public ResponseEntity<String> startMatch() {
-
         match.setTeam1Name(team1.getTeamName());
         match.setTeam2Name(team2.getTeamName());
         Helperfun helperfun = new Helperfun();

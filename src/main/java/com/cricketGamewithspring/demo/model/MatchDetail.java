@@ -6,11 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.stereotype.Component;
 
 //This is just for taking data from postman.
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 @Document(collection = "MatchDetails")
 public class MatchDetail {
 

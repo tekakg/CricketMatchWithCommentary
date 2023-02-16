@@ -1,18 +1,21 @@
 package com.cricketGamewithspring.demo.model;
 
 import com.cricketGamewithspring.demo.helper.Ball;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 @Document(collection="Match")
 public class Match {
     @Transient

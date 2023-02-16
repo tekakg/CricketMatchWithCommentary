@@ -7,9 +7,11 @@ import com.cricketGamewithspring.demo.helper.Team;
 import com.cricketGamewithspring.demo.model.Match;
 import com.cricketGamewithspring.demo.model.Player;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class Helperfun {
 
 
@@ -116,7 +118,7 @@ public class Helperfun {
                     Striker.incrementBallsFaced();
                     BowlingTeam.incrementwicket();
                     Bowler.incrementWickets();
-                    if (BowlingTeam.getWicket() == 2) {
+                    if (BowlingTeam.getWicket() == BowlingTeam.getTotalPlayers()-1) {
                         flag = 1;
                         break;
                     } else {

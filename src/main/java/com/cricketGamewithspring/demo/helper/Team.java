@@ -4,6 +4,7 @@ import com.cricketGamewithspring.demo.model.Player;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.Optional;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 public class Team {
     private String teamName;
     private int totalPlayers;

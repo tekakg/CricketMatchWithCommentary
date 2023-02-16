@@ -1,7 +1,15 @@
 package com.cricketGamewithspring.demo.helper;
 
 import com.cricketGamewithspring.demo.model.Player;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Component
 public class Ball {
     private int overNumber;
     private int ballNumber;

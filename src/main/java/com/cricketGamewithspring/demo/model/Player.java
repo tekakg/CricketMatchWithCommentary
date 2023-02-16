@@ -6,10 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.stereotype.Component;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 @Document(collection="PlayerList")
 public class Player {
     @Transient
@@ -27,7 +29,6 @@ public class Player {
     private boolean outOrNot;
 
     public void incrementrun(int run) {
-
         this.run += run;
     }
     public void incrementBallsFaced() {
