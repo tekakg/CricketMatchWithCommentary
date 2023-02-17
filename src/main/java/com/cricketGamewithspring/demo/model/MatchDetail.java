@@ -26,6 +26,6 @@ public class MatchDetail {
     private String team1Name;
     @Field("Team2Name")
     private String team2Name;
-    private int[] playerTeam1id;
-    private int[] playerTeam2id;
+    private int[] Team1Players;
+    private int[] Team2Players;
 }

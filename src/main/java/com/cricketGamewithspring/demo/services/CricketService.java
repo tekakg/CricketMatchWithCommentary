@@ -46,8 +46,8 @@ public class CricketService {
         if (matchDetail.getPlayerCount() <= 0) {
             return null;
         }
-        int[] team1playerid = matchDetail.getPlayerTeam1id();
-        int[] team2playerid = matchDetail.getPlayerTeam2id();
+        int[] team1playerid = matchDetail.getTeam1Players();
+        int[] team2playerid = matchDetail.getTeam2Players();
 
         for (int playerid : team1playerid) {   //checking whether all players present in database or not.
             if (playerRepo.findById(playerid) == null) {
@@ -75,7 +75,7 @@ public class CricketService {
         team1.setWicket(0);
         team1.setTotalPlayers(matchDetail.getPlayerCount());
         ArrayList<Player> playerteam1 = new ArrayList<>();
-        for (int playerId : team1playerid) {
+        for (int playerId : matchDetail.getTeam1Players()) {
             Player nplayer = playerRepo.findById(playerId);
             playerteam1.add(nplayer);
 
@@ -90,7 +90,7 @@ public class CricketService {
         team1.setWicket(0);
         team2.setTotalPlayers(matchDetail.getPlayerCount());
         ArrayList<Player> playerteam2 = new ArrayList<>();
-        for (int playerId : team2playerid) {
+        for (int playerId : matchDetail.getTeam2Players()) {
             Player nplayer = playerRepo.findById(playerId);
             playerteam2.add(nplayer);
         }
