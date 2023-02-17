@@ -1,35 +1,30 @@
 package com.cricketGamewithspring.demo.services;
 
-import ch.qos.logback.core.joran.spi.ElementSelector;
 import com.cricketGamewithspring.demo.Repo.MatchRepo;
 import com.cricketGamewithspring.demo.helper.Ball;
 import com.cricketGamewithspring.demo.helper.Team;
 import com.cricketGamewithspring.demo.model.Match;
 import com.cricketGamewithspring.demo.model.Player;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Data
 @Service
-public class Helperfun {
-
+@Slf4j
+public class PlaymatchService {
 
     @Autowired
     MatchRepo matchRepo;
 
-    public String getToss() {
-        int toss = (int) (Math.random() * 2);
-        if (toss == 0) {
-            return "Team1";
-        } else
-            return "Team2";
-    }
 
-    public String playMatch(Team team1, Team team2, Match match) {
-        Team BattingTeam = new Team();
-        Team BowlingTeam = new Team();
-        if (match.getTossResult() == "Team1") {
+    public String playMatch(Team team1, Team team2, Match match, String winningTeam) {
+        Team BattingTeam =null;
+        Team BowlingTeam =null;
+        if (winningTeam==team1.getTeamName()) {
             BattingTeam = team1;
             BowlingTeam = team2;
         } else {
@@ -37,22 +32,25 @@ public class Helperfun {
             BowlingTeam = team1;
         }
 
-        ArrayList<Ball>ballHistory=new ArrayList<>();
-        Player playerNumber1 = BattingTeam.getListOfPlayers().get(0);
-        Player playerNumber2 = BattingTeam.getListOfPlayers().get(1);
+        ArrayList<Ball> ballHistory = new ArrayList<>();
+        Player playerNumber1 = null;
+        Player playerNumber2 = null;
+        playerNumber1 = BattingTeam.getListOfPlayers().get(0);
+        playerNumber2 = BattingTeam.getListOfPlayers().get(1);
+
+
         Player Striker = playerNumber1;
         Player nonStriker = playerNumber2;
         Player Bowler = BowlingTeam.listOfPlayers.get(0);
         int flag = 0;
-        int overnum=0;
-        int ballnum=0;
+        int overnum = 0;
+        int ballnum = 0;
         for (overnum = 0; overnum < match.getTotalOvers(); overnum++) {
-            for (ballnum=0;ballnum < 6; ballnum++) {
+            for (ballnum = 0; ballnum < 6; ballnum++) {
                 Bowler.incrementBallsBowled();
                 int run = randomFunction();
                 Ball nball = new Ball(overnum, ballnum + 1, Bowler, Striker, run, 1);
                 ballHistory.add(nball);
-                //System.out.println(run);
                 if (run == 7) {
                     Striker.incrementBallsFaced();
                     BattingTeam.incrementwicket();
@@ -99,8 +97,8 @@ public class Helperfun {
         BattingTeam.setBallNumber(ballnum);
 
 
-        overnum=0;
-        ballnum=0;
+        overnum = 0;
+        ballnum = 0;
         flag = 0;
         playerNumber1 = BowlingTeam.listOfPlayers.get(0);
         playerNumber2 = BowlingTeam.listOfPlayers.get(1);
@@ -108,17 +106,17 @@ public class Helperfun {
         nonStriker = playerNumber2;
         Bowler = BattingTeam.listOfPlayers.get(0);
         for (overnum = 0; overnum < match.getTotalOvers(); overnum++) {
-            for (ballnum= 0; ballnum < 6; ballnum++) {
+            for (ballnum = 0; ballnum < 6; ballnum++) {
                 int run = randomFunction();
                 Bowler.incrementBallsBowled();
-                Ball nball = new Ball(overnum, ballnum + 1, Bowler, Striker, run,2);
+                Ball nball = new Ball(overnum, ballnum + 1, Bowler, Striker, run, 2);
                 ballHistory.add(nball);
                 //System.out.println(run);
                 if (run == 7) {
                     Striker.incrementBallsFaced();
                     BowlingTeam.incrementwicket();
                     Bowler.incrementWickets();
-                    if (BowlingTeam.getWicket() == BowlingTeam.getTotalPlayers()-1) {
+                    if (BowlingTeam.getWicket() == BowlingTeam.getTotalPlayers() - 1) {
                         flag = 1;
                         break;
                     } else {
@@ -175,7 +173,7 @@ public class Helperfun {
         return result;
     }
 
-    public int randomFunction() {
+    private int randomFunction() {
         int val = (int) (Math.random() * 150);
         if (val > 140)
             return 7;

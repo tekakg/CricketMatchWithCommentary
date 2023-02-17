@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
-@Document(collection="PlayerList")
+@Document(collection = "PlayerList")
 public class Player {
     @Transient
     public static final String SEQUENCE_NAME = "players_sequence";
@@ -31,13 +31,16 @@ public class Player {
     public void incrementrun(int run) {
         this.run += run;
     }
+
     public void incrementBallsFaced() {
         this.BallsFaced++;
     }
-    public void incrementWickets(){
+
+    public void incrementWickets() {
         this.wickets++;
     }
-    public void incrementBallsBowled(){
+
+    public void incrementBallsBowled() {
         this.BallsBowled++;
     }
 }

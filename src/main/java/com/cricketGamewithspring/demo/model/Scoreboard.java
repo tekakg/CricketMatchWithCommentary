@@ -22,7 +22,6 @@ public class Scoreboard {
     @Id
     private int scoreBoardId;
     private int matchId;
-
     private Team team1;
 
     private Team team2;

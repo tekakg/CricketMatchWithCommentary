@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
-@Document(collection="Match")
+@Document(collection = "Match")
 public class Match {
     @Transient
     public static final String SEQUENCE_NAME = "match_sequence";
@@ -27,12 +27,13 @@ public class Match {
     private String team2Name;
     private String tossResult;
     private String MatchResult;
-    private ArrayList<Ball>commentary;
+    private ArrayList<Ball> commentary;
 
     public void setCommentary(ArrayList<Ball> commentary) {
         this.commentary = commentary;
     }
-    public ArrayList<Ball>getCommentary(){
+
+    public ArrayList<Ball> getCommentary() {
         return commentary;
     }
 }

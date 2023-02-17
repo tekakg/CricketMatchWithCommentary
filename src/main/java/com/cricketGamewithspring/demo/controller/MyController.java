@@ -2,6 +2,7 @@ package com.cricketGamewithspring.demo.controller;
 
 import com.cricketGamewithspring.demo.model.MatchDetail;
 import com.cricketGamewithspring.demo.model.Player;
+import com.cricketGamewithspring.demo.model.Scoreboard;
 import com.cricketGamewithspring.demo.services.CricketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,20 +23,20 @@ public class MyController {
     }
 
     @PostMapping("/match-info")
-    public ResponseEntity<String> setMatch(@RequestBody MatchDetail matchDetail) {
+    public Scoreboard setMatch(@RequestBody MatchDetail matchDetail) {
         //service will create the match object and save it in CricketDao.
         return cricketService.createMatch(matchDetail);
     }
+
     @PostMapping("/player-info")
-    public ResponseEntity<String> setPlayer(@RequestBody Player player){
+    public ResponseEntity<String> setPlayer(@RequestBody Player player) {
         return cricketService.setPlayer(player);
     }
 
-    @PostMapping("/match-started")
-    public ResponseEntity<String>startMatch()
-    {
-        return cricketService.startMatch();
-    }
+//    @PostMapping("/match-started")
+//    public ResponseEntity<String> startMatch() {
+//        return cricketService.startMatch();
+//    }
 
 
 //    @GetMapping("/flip-the-coin")

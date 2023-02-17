@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository("MatchDetailRepo")
-public interface MatchDetailRepo extends MongoRepository<MatchDetail,Integer> {
+public interface MatchDetailRepo extends MongoRepository<MatchDetail, Integer> {
 }
