@@ -102,7 +102,6 @@ public class CricketService {
     private Scoreboard startMatch(Team team1, Team team2) {
             match.setTeam1Name(team1.getTeamName());
             match.setTeam2Name(team2.getTeamName());
-
             TossService tossService = new TossService();
             String tossWinningTeam = tossService.getToss(team1, team2);
             match.setTossResult(tossWinningTeam + " " + "has won the toss and elected to bat first");
