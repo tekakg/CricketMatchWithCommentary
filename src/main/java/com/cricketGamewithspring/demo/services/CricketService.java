@@ -117,7 +117,7 @@ public class CricketService {
             //take help of helper function to start the game.
             return scoreboard;
     }
-
+    //setplayer method
 
     public ResponseEntity<String> setPlayer(Player player) {//Data is directly passed to the database.
         if (playerRepo.findByName(player.getName()) != null) {
