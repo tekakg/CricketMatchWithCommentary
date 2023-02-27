@@ -11,9 +11,5 @@ import java.util.Optional;
 public interface CricketServiceInt {
 
     public Scoreboard createMatch(MatchDetail matchDetail);
-    public ResponseEntity<String> setPlayer(Player player);
 
-    Optional<Scoreboard> getScoreboard(int parseInt);
-
-    Optional<Match> getMatch(int parseInt);
 }

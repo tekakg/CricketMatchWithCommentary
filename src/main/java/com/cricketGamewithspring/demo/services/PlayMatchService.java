@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @Data
 @Service
 @Slf4j
-public class PlaymatchService implements PlaymatchServiceInt {
+public class PlayMatchService implements PlayMatchServiceInt {
 
     @Autowired
     MatchRepo matchRepo;
@@ -164,9 +164,9 @@ public class PlaymatchService implements PlaymatchServiceInt {
         match.setCommentary(ballHistory);
         String result;
         if (BattingTeam.getScore() > BowlingTeam.getScore()) {
-            result = BattingTeam.getTeamName() + "has won the match";
+            result = BattingTeam.getTeamName() + " " + "has won the match";
         } else if (BattingTeam.getScore() < BowlingTeam.getScore()) {
-            result = BowlingTeam.getTeamName() + "has won the match";
+            result = BowlingTeam.getTeamName() + " "+"has won the match";
         } else {
             result = "MATCH DRAWN";
         }

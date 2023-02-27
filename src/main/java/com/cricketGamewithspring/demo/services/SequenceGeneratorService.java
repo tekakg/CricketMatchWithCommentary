@@ -23,10 +23,6 @@ import org.springframework.stereotype.Service;
 public class SequenceGeneratorService {
     @Autowired
     private MongoOperations mongoOperations;
-
-    //    public SequenceGeneratorService(MongoOperations mongoOperations) {
-//        this.mongoOperations = mongoOperations;
-//    }
     public int generateSequence(String seqName) {
         DatabaseSequence counter = mongoOperations.findAndModify(
                 query(where("_id").is(seqName)),

@@ -1,11 +1,11 @@
 package com.cricketGamewithspring.demo.controller;
 
+import com.cricketGamewithspring.demo.exceptionHandler.ResourceNotFound;
 import com.cricketGamewithspring.demo.model.Match;
 import com.cricketGamewithspring.demo.model.MatchDetail;
 import com.cricketGamewithspring.demo.model.Player;
 import com.cricketGamewithspring.demo.model.Scoreboard;
-import com.cricketGamewithspring.demo.services.CricketService;
-import com.cricketGamewithspring.demo.services.CricketServiceInt;
+import com.cricketGamewithspring.demo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +18,15 @@ public class MyController {
     @Autowired
     private CricketServiceInt cricketService;
 
+    @Autowired
+    private ScoreboardServiceInt scoreboardService;
+
+    @Autowired
+    private MatchDetailServiceInt matchService;
+
+    @Autowired
+    private PlayerServiceInt playerService;
+
     @GetMapping("/")
     public String message() {
         return "Lets Start the Match";
@@ -25,37 +34,28 @@ public class MyController {
 
     @PostMapping("/match-info")
     public Scoreboard setMatch(@RequestBody MatchDetail matchDetail) {
-        //service will create the match object and save it in MatchDao.
-     //   System.out.println(matchDetail.getTeam1Players().size());
-        System.out.println(matchDetail);
         return cricketService.createMatch(matchDetail);
     }
 
     @PostMapping("/player-info")
     public ResponseEntity<String> setPlayer(@RequestBody Player player) {
-        return cricketService.setPlayer(player);
+        return playerService.setPlayer(player);
     }
 
-//    @PostMapping("/match-started")
-//    public ResponseEntity<String> startMatch() {
-//        return cricketService.startMatch();
-//    }
 
-
-//    @GetMapping("/flip-the-coin")
-//    public String getTossResult() {
-//        return cricketService.getTossResult();
-//    }
-//
-
-    @GetMapping("/scoreboard/{matchid}")
-    public Optional<Scoreboard> getscoreboard(@PathVariable String matchid){
-        Optional<Scoreboard>scoreboard=cricketService.getScoreboard(Integer.parseInt(matchid));
+    @GetMapping("/scoreboard/{matchId}")
+    public Optional<Scoreboard> getScoreboard(@PathVariable String matchId) {
+        Optional<Scoreboard> scoreboard = scoreboardService.getScoreboard(Integer.parseInt(matchId));
+        if(scoreboard==null)
+        {
+            throw new ResourceNotFound("No scoreboard corresponding to this matchId");
+        }
         return Optional.ofNullable(scoreboard.orElse(null));
     }
-    @GetMapping("/match/{matchid}")
-    public Optional<Match> getMatch(@PathVariable String matchid)
-    {   Optional<Match>match=cricketService.getMatch(Integer.parseInt(matchid));
+
+    @GetMapping("/match-history/{matchId}")
+    public Optional<Match>getMatch(@PathVariable String matchId) {
+        Optional<Match> match = matchService.getMatch(Integer.parseInt(matchId));
         return Optional.ofNullable(match.orElse(null));
     }
 }
