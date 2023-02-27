@@ -1,6 +1,7 @@
 package com.cricketGamewithspring.demo.controller;
 
 import com.cricketGamewithspring.demo.exceptionHandler.ResourceNotFound;
+import com.cricketGamewithspring.demo.model.Team;
 import com.cricketGamewithspring.demo.model.Match;
 import com.cricketGamewithspring.demo.model.MatchDetail;
 import com.cricketGamewithspring.demo.model.Player;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -37,7 +39,7 @@ public class MyController {
         return cricketService.createMatch(matchDetail);
     }
 
-    @PostMapping("/player-info")
+    @PostMapping("/set-player-info")
     public ResponseEntity<String> setPlayer(@RequestBody Player player) {
         return playerService.setPlayer(player);
     }
@@ -57,5 +59,25 @@ public class MyController {
     public Optional<Match>getMatch(@PathVariable String matchId) {
         Optional<Match> match = matchService.getMatch(Integer.parseInt(matchId));
         return Optional.ofNullable(match.orElse(null));
+    }
+    @GetMapping("/player-info-using-name/{playerName}")
+    public Player getPlayerUsingName(@PathVariable String playerName)
+    {
+        return playerService.getPlayerUsingName(playerName);
+    }
+    @GetMapping("/players-info-using-role/{playerRole}")
+    public List<Player> getPlayerUsingRole(@PathVariable String playerRole)
+    {
+        return playerService.getPlayerUsingRole(playerRole);
+    }
+    @GetMapping("/team1/{matchId}")
+    public Team getTeam1(@PathVariable String matchId)
+    {
+        return scoreboardService.getTeam1(Integer.parseInt(matchId));
+    }
+    @GetMapping("/team2/{matchId}")
+    public Team getTeam2(@PathVariable String matchId)
+    {
+        return scoreboardService.getTeam2(Integer.parseInt(matchId));
     }
 }

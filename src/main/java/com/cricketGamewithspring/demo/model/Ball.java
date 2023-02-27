@@ -1,4 +1,4 @@
-package com.cricketGamewithspring.demo.helper;
+package com.cricketGamewithspring.demo.model;
 
 import com.cricketGamewithspring.demo.model.Player;
 import lombok.AllArgsConstructor;

@@ -1,14 +1,8 @@
 package com.cricketGamewithspring.demo.services;
 
-import com.cricketGamewithspring.demo.helper.Team;
+import com.cricketGamewithspring.demo.model.Team;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-
-
-import com.cricketGamewithspring.demo.helper.Team;
-import lombok.Data;
 import org.springframework.stereotype.Service;
 
 @Data

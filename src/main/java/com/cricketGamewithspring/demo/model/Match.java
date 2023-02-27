@@ -1,7 +1,5 @@
 package com.cricketGamewithspring.demo.model;
 
-import com.cricketGamewithspring.demo.helper.Ball;
-import jakarta.persistence.Convert;
 import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;

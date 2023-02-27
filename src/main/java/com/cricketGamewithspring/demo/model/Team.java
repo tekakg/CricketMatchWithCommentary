@@ -1,6 +1,5 @@
-package com.cricketGamewithspring.demo.helper;
+package com.cricketGamewithspring.demo.model;
 
-import com.cricketGamewithspring.demo.model.Player;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Data
 @NoArgsConstructor

@@ -5,7 +5,7 @@ import com.cricketGamewithspring.demo.Repo.MatchRepo;
 import com.cricketGamewithspring.demo.Repo.PlayerRepo;
 import com.cricketGamewithspring.demo.Repo.ScoreboardRepo;
 import com.cricketGamewithspring.demo.exceptionHandler.ResourceNotFound;
-import com.cricketGamewithspring.demo.helper.Team;
+import com.cricketGamewithspring.demo.model.Team;
 import com.cricketGamewithspring.demo.model.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -55,17 +55,14 @@ public class CricketService implements CricketServiceInt {
         }
 
         for (int playerId : team2PlayerId) {
-            System.out.println(playerId);
             if (playerRepo.findById(playerId) == null) {
                 throw new ResourceNotFound("Wrong Input:" + " " + "playerNumber" + " " + playerId + " " + "is not found.");
             }
         }
         matchDetail.setId(sequenceGeneratorService.generateSequence(matchDetail.SEQUENCE_NAME));
         matchDetailRepo.save(matchDetail);
-
         Team team1 = new Team();
         Team team2 = new Team();
-
         team1.setTeamName(matchDetail.getTeam1Name());
         team1.setScore(0);
         team1.setOverNumber(0);
@@ -92,24 +89,9 @@ public class CricketService implements CricketServiceInt {
         }
         team2.setListOfPlayers(playerTeam2);
         match.setTotalOvers(matchDetail.getOvers());
-        return this.startMatch(team1, team2);
-    }
-    private Scoreboard startMatch(Team team1, Team team2) {
-        match.setTeam1Name(team1.getTeamName());
-        match.setTeam2Name(team2.getTeamName());
-        TossServiceInt tossService = new TossService();
-        String tossWinningTeam = tossService.getToss(team1, team2);
-        match.setTossResult(tossWinningTeam + " " + "has won the toss and elected to bat first");
-        PlayMatchServiceInt playMatchService= new PlayMatchService();
-        match.setMatchResult(playMatchService.playMatch(team1, team2, match, tossWinningTeam));
+        StartMatchServiceInt startMatchService=new StartMatchService();
         match.setId(sequenceGeneratorService.generateSequence(match.SEQUENCE_NAME));
-        matchRepo.save(match);
-        scoreboard.setMatchId(match.getId());
-        scoreboard.setTeam1(team1);
-        scoreboard.setTeam2(team2);
         scoreboard.setScoreBoardId(sequenceGeneratorService.generateSequence(scoreboard.SEQUENCE_NAME));
-        scoreboardRepo.save(scoreboard);
-        //take help of helper function to start the game.
-        return scoreboard;
+        return startMatchService.startMatch(team1,team2,match,scoreboard,matchRepo,scoreboardRepo);
     }
 }

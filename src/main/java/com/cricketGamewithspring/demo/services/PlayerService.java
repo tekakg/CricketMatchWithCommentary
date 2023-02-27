@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Data
 @Service
 @RequiredArgsConstructor
@@ -24,5 +26,20 @@ public class PlayerService implements  PlayerServiceInt{
         player.setId(sequenceGeneratorService.generateSequence(Player.SEQUENCE_NAME));
         playerRepo.save(player);
         return ResponseEntity.ok("Player is Successfully Added to the PlayerList");
+    }
+    public Player getPlayer(int playerId)
+    {
+        Player player=playerRepo.findById(playerId);
+        return player;
+    }
+    public List<Player> getPlayerUsingRole(String role)
+    {
+        List<Player> playerList=playerRepo.findAllByRole(role);
+        return playerList;
+    }
+    public Player getPlayerUsingName(String name)
+    {
+        Player player=playerRepo.findByName(name);
+        return player;
     }
 }

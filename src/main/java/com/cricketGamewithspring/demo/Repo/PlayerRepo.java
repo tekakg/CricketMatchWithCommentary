@@ -15,4 +15,6 @@ public interface PlayerRepo extends MongoRepository<Player, Integer> {
 
     Player findById(int id);
 
+    List<Player> findAllByRole(String role);
+
 }
