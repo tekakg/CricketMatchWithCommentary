@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @Data
 @Service
 @Slf4j
-public class PlaymatchService {
+public class PlaymatchService implements PlaymatchServiceInt {
 
     @Autowired
     MatchRepo matchRepo;

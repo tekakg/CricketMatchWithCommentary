@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Service
@@ -105,10 +106,10 @@ public class CricketService implements CricketServiceInt {
     private Scoreboard startMatch(Team team1, Team team2) {
             match.setTeam1Name(team1.getTeamName());
             match.setTeam2Name(team2.getTeamName());
-            TossService tossService = new TossService();
+            TossServiceInt tossService = new TossService();
             String tossWinningTeam = tossService.getToss(team1, team2);
             match.setTossResult(tossWinningTeam + " " + "has won the toss and elected to bat first");
-            PlaymatchService playmatchService = new PlaymatchService();
+            PlaymatchServiceInt playmatchService = new PlaymatchService();
             match.setMatchResult(playmatchService.playMatch(team1, team2, match, tossWinningTeam));
             match.setId(sequenceGeneratorService.generateSequence(match.SEQUENCE_NAME));
             matchRepo.save(match);
@@ -129,5 +130,17 @@ public class CricketService implements CricketServiceInt {
         player.setId(sequenceGeneratorService.generateSequence(Player.SEQUENCE_NAME));
         playerRepo.save(player);
         return ResponseEntity.ok("Player is Successfully Added to the PlayerList");
+    }
+
+    public Optional<Scoreboard> getScoreboard (int matchid)
+    {
+        Optional<Scoreboard> scoreboard=scoreboardRepo.findByMatchId(matchid);
+        return scoreboard;
+    }
+
+    public Optional<Match> getMatch (int matchid)
+    {
+        Optional<Match>match=matchRepo.findById(matchid);
+        return match;
     }
 }

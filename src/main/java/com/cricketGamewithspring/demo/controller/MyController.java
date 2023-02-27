@@ -1,5 +1,6 @@
 package com.cricketGamewithspring.demo.controller;
 
+import com.cricketGamewithspring.demo.model.Match;
 import com.cricketGamewithspring.demo.model.MatchDetail;
 import com.cricketGamewithspring.demo.model.Player;
 import com.cricketGamewithspring.demo.model.Scoreboard;
@@ -7,10 +8,9 @@ import com.cricketGamewithspring.demo.services.CricketService;
 import com.cricketGamewithspring.demo.services.CricketServiceInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class MyController {
@@ -47,4 +47,15 @@ public class MyController {
 //        return cricketService.getTossResult();
 //    }
 //
+
+    @GetMapping("/scoreboard/{matchid}")
+    public Optional<Scoreboard> getscoreboard(@PathVariable String matchid){
+        Optional<Scoreboard>scoreboard=cricketService.getScoreboard(Integer.parseInt(matchid));
+        return Optional.ofNullable(scoreboard.orElse(null));
+    }
+    @GetMapping("/match/{matchid}")
+    public Optional<Match> getMatch(@PathVariable String matchid)
+    {   Optional<Match>match=cricketService.getMatch(Integer.parseInt(matchid));
+        return Optional.ofNullable(match.orElse(null));
+    }
 }

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Data
-public class TossService {
+public class TossService implements TossServiceInt{
     private int toss;
     public String getToss(Team team1, Team team2) {
         toss = (int) (Math.random() * 2);
