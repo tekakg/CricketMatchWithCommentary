@@ -4,9 +4,12 @@ import com.cricketGamewithspring.cricketGame.model.Ball;
 import com.cricketGamewithspring.cricketGame.model.Match;
 import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.model.Team;
+import com.cricketGamewithspring.cricketGame.serviceInt.RandomFunctionServiceInt;
+import com.cricketGamewithspring.cricketGame.serviceInt.SecondInningServiceInt;
+
 import java.util.ArrayList;
 import java.util.List;
-public class SecondInningService implements SecondInningServiceInt{
+public class SecondInningService implements SecondInningServiceInt {
     @Override
     public List<Team> secondInnings(Team team1, Team team2, Match match, List<Ball> ballHistory) {
         Team BowlingTeam=team2;

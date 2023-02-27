@@ -2,6 +2,7 @@ package com.cricketGamewithspring.cricketGame.services;
 
 import com.cricketGamewithspring.cricketGame.Repo.MatchRepo;
 import com.cricketGamewithspring.cricketGame.model.Match;
+import com.cricketGamewithspring.cricketGame.serviceInt.MatchDetailServiceInt;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.Optional;
 @Data
 @Service
 @RequiredArgsConstructor
-public class MatchDetailsService implements  MatchDetailServiceInt{
+public class MatchDetailsService implements MatchDetailServiceInt {
 
     @Autowired
     MatchRepo matchRepo;

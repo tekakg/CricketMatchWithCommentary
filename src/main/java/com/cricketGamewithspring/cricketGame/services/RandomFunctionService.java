@@ -1,5 +1,6 @@
 package com.cricketGamewithspring.cricketGame.services;
 
+import com.cricketGamewithspring.cricketGame.serviceInt.RandomFunctionServiceInt;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Data
 @Service
 @RequiredArgsConstructor
-public class RandomFunctionService implements RandomFunctionServiceInt{
+public class RandomFunctionService implements RandomFunctionServiceInt {
     public int randomFunction() {
         int val = (int) (Math.random() * 150);
         if (val > 140)

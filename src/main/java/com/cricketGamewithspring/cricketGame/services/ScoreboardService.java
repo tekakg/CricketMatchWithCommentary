@@ -3,6 +3,7 @@ package com.cricketGamewithspring.cricketGame.services;
 import com.cricketGamewithspring.cricketGame.Repo.ScoreboardRepo;
 import com.cricketGamewithspring.cricketGame.model.Team;
 import com.cricketGamewithspring.cricketGame.model.Scoreboard;
+import com.cricketGamewithspring.cricketGame.serviceInt.ScoreboardServiceInt;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

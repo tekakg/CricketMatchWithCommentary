@@ -2,6 +2,7 @@ package com.cricketGamewithspring.cricketGame.services;
 
 import com.cricketGamewithspring.cricketGame.Repo.PlayerRepo;
 import com.cricketGamewithspring.cricketGame.model.Player;
+import com.cricketGamewithspring.cricketGame.serviceInt.PlayerServiceInt;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.List;
 @Data
 @Service
 @RequiredArgsConstructor
-public class PlayerService implements  PlayerServiceInt{
+public class PlayerService implements PlayerServiceInt {
     @Autowired
     PlayerRepo playerRepo;
     @Autowired

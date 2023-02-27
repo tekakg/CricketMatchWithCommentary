@@ -1,4 +1,4 @@
-package com.cricketGamewithspring.cricketGame.services;
+package com.cricketGamewithspring.cricketGame.serviceInt;
 
 import com.cricketGamewithspring.cricketGame.Repo.MatchRepo;
 import com.cricketGamewithspring.cricketGame.Repo.ScoreboardRepo;
