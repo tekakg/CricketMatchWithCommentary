@@ -14,9 +14,9 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Component
 @Document(collection = "PlayerList")
-@CompoundIndex(def = "{'name':1}")
-@CompoundIndex(def = "{'role':1}")
-@CompoundIndex(def = "{'id':1}")
+@CompoundIndex(name="playerName",def = "{'name':1}")
+@CompoundIndex(name="playerRole",def = "{'role':1}")
+@CompoundIndex(name="matchId",def = "{'id':1}")
 public class Player {
     @Transient
     public static final String SEQUENCE_NAME = "players_sequence";

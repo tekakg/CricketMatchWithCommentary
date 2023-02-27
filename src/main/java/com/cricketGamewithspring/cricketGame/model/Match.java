@@ -17,7 +17,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Component
 @Document(collection = "Match")
-@CompoundIndex(def = "{'id': 1}")
+@CompoundIndex(name="matchId",def = "{'id': 1}")
 public class Match {
     @Transient
     public static final String SEQUENCE_NAME = "match_sequence";

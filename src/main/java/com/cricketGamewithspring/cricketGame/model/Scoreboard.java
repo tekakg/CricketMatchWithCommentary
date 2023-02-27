@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component
 @Document(collection = "Scoreboard")
-@CompoundIndex(def = "{'matchId': 1}")
+@CompoundIndex(name="matchId",def = "{'matchId': 1}")
 public class Scoreboard {
     @Transient
     public static final String SEQUENCE_NAME = "scoreboard_sequence";

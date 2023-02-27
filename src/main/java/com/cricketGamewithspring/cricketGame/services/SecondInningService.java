@@ -33,7 +33,7 @@ public class SecondInningService implements SecondInningServiceInt {
                 //System.out.println(run);
                 if (run == 7) {
                     Striker.incrementBallsFaced();
-                    BowlingTeam.incrementwicket();
+                    BowlingTeam.incrementWicket();
                     Bowler.incrementWickets();
                     if (BowlingTeam.getWicket() == BowlingTeam.getTotalPlayers() - 1) {
                         flag = 1;
@@ -52,7 +52,7 @@ public class SecondInningService implements SecondInningServiceInt {
                         flag = 1;
                         break;
                     }
-                    BowlingTeam.incrementrun(run);
+                    BowlingTeam.incrementRun(run);
                     Striker.incrementRun(run);
                     Striker.incrementBallsFaced();
                     if (run % 2 == 1) {
