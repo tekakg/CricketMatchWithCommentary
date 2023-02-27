@@ -9,11 +9,12 @@ import com.cricketGamewithspring.cricketGame.serviceInt.SecondInningServiceInt;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class SecondInningService implements SecondInningServiceInt {
     @Override
     public List<Team> secondInnings(Team team1, Team team2, Match match, List<Ball> ballHistory) {
-        Team BowlingTeam=team2;
-        Team BattingTeam=team1;
+        Team BowlingTeam = team2;
+        Team BattingTeam = team1;
         int overnum = 0;
         int ballnum = 0;
         int flag = 0;
@@ -22,7 +23,7 @@ public class SecondInningService implements SecondInningServiceInt {
         Player Striker = playerNumber1;
         Player nonStriker = playerNumber2;
         Player Bowler = BattingTeam.listOfPlayers.get(0);
-        RandomFunctionServiceInt randomFunctionService=new RandomFunctionService();
+        RandomFunctionServiceInt randomFunctionService = new RandomFunctionService();
         for (overnum = 0; overnum < match.getTotalOvers(); overnum++) {
             for (ballnum = 0; ballnum < 6; ballnum++) {
                 int run = randomFunctionService.randomFunction();
@@ -78,7 +79,7 @@ public class SecondInningService implements SecondInningServiceInt {
         BowlingTeam.setBallNumber(ballnum);
         BowlingTeam.setOverNumber(overnum);
         match.setCommentary((ArrayList<Ball>) ballHistory);
-        List<Team>nList=new ArrayList<>();
+        List<Team> nList = new ArrayList<>();
         nList.add(BattingTeam);
         nList.add(BowlingTeam);
         return nList;

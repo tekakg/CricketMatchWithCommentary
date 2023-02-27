@@ -17,9 +17,9 @@ public class MatchDetailsService implements MatchDetailServiceInt {
 
     @Autowired
     MatchRepo matchRepo;
-    public Optional<Match> getMatch (int matchId)
-    {
-        Optional<Match>match=matchRepo.findById(matchId);
+
+    public Optional<Match> getMatch(int matchId) {
+        Optional<Match> match = matchRepo.findById(matchId);
         return match;
     }
 

@@ -25,18 +25,18 @@ public class PlayMatchService implements PlayMatchServiceInt {
 
     public String playMatch(Team team1, Team team2, Match match, String tossWinningTeam) {
         ArrayList<Ball> ballHistory = new ArrayList<>();
-        FirstInningServiceInt firstInningService=new FirstInningService();
-        List<Team>output=firstInningService.firstInnings(team1,team2,match,tossWinningTeam,ballHistory);
-        SecondInningServiceInt secondInningService=new SecondInningService();
-        output=secondInningService.secondInnings(output.get(0),output.get(1),match,ballHistory);
+        FirstInningServiceInt firstInningService = new FirstInningService();
+        List<Team> output = firstInningService.firstInnings(team1, team2, match, tossWinningTeam, ballHistory);
+        SecondInningServiceInt secondInningService = new SecondInningService();
+        output = secondInningService.secondInnings(output.get(0), output.get(1), match, ballHistory);
 
-        Team BattingTeam=output.get(0);
-        Team BowlingTeam=output.get(1);
+        Team BattingTeam = output.get(0);
+        Team BowlingTeam = output.get(1);
         String result;
         if (BattingTeam.getScore() > BowlingTeam.getScore()) {
             result = BattingTeam.getTeamName() + " " + "has won the match";
         } else if (BattingTeam.getScore() < BowlingTeam.getScore()) {
-            result = BowlingTeam.getTeamName() + " "+"has won the match";
+            result = BowlingTeam.getTeamName() + " " + "has won the match";
         } else {
             result = "MATCH DRAWN";
         }

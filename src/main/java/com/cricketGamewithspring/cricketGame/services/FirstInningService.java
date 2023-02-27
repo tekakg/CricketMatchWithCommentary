@@ -11,11 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirstInningService implements FirstInningServiceInt {
-    public List<Team> firstInnings(Team team1, Team team2, Match match, String tossWinningTeam,List<Ball>ballHistory)
-    {
-        Team BattingTeam =null;
-        Team BowlingTeam =null;
-        if (tossWinningTeam==team1.getTeamName()) {
+    public List<Team> firstInnings(Team team1, Team team2, Match match, String tossWinningTeam, List<Ball> ballHistory) {
+        Team BattingTeam = null;
+        Team BowlingTeam = null;
+        if (tossWinningTeam == team1.getTeamName()) {
             BattingTeam = team1;
             BowlingTeam = team2;
         } else {
@@ -32,7 +31,7 @@ public class FirstInningService implements FirstInningServiceInt {
         int flag = 0;
         int overnum = 0;
         int ballnum = 0;
-        RandomFunctionServiceInt randomFunctionService=new RandomFunctionService();
+        RandomFunctionServiceInt randomFunctionService = new RandomFunctionService();
         for (overnum = 0; overnum < match.getTotalOvers(); overnum++) {
             for (ballnum = 0; ballnum < 6; ballnum++) {
                 Bowler.incrementBallsBowled();
@@ -41,7 +40,7 @@ public class FirstInningService implements FirstInningServiceInt {
                 ballHistory.add(nball);
                 if (run == 7) {
                     Striker.incrementBallsFaced();
-                    BattingTeam.incrementwicket();
+                    BattingTeam.incrementWicket();
                     Bowler.incrementWickets();
                     if (BattingTeam.getWicket() == (BattingTeam.getTotalPlayers() - 1)) {
 
@@ -57,7 +56,7 @@ public class FirstInningService implements FirstInningServiceInt {
                         }
                     }
                 } else {
-                    BattingTeam.incrementrun(run);
+                    BattingTeam.incrementRun(run);
                     Striker.incrementRun(run);
                     Striker.incrementBallsFaced();
                     if (run % 2 == 1) {
@@ -83,7 +82,7 @@ public class FirstInningService implements FirstInningServiceInt {
         }
         BattingTeam.setOverNumber(overnum);
         BattingTeam.setBallNumber(ballnum);
-        List<Team>nList=new ArrayList<>();
+        List<Team> nList = new ArrayList<>();
         nList.add(BattingTeam);
         nList.add(BowlingTeam);
         return nList;

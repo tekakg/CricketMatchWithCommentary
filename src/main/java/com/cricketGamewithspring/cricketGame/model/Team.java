@@ -22,11 +22,11 @@ public class Team {
     private int overNumber;
     private int ballNumber;
 
-    public void incrementwicket() {
+    public void incrementWicket() {
         this.wicket++;
     }
 
-    public void incrementrun(int run) {
+    public void incrementRun(int run) {
         this.score += run;
     }
 

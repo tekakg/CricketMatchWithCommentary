@@ -18,20 +18,20 @@ public class ScoreboardService implements ScoreboardServiceInt {
 
     @Autowired
     ScoreboardRepo scoreboardRepo;
-    public Optional<Scoreboard> getScoreboard (int matchId)
-    {
 
-        Optional<Scoreboard> scoreboard=scoreboardRepo.findByMatchId(matchId);
+    public Optional<Scoreboard> getScoreboard(int matchId) {
+
+        Optional<Scoreboard> scoreboard = scoreboardRepo.findByMatchId(matchId);
         return scoreboard;
     }
-    public Team getTeam1(int matchId)
-    {
-        Team team=scoreboardRepo.findByMatchId(matchId).get().getTeam1();
+
+    public Team getTeam1(int matchId) {
+        Team team = scoreboardRepo.findByMatchId(matchId).get().getTeam1();
         return team;
     }
-    public Team getTeam2(int matchId)
-    {
-        Team team=scoreboardRepo.findByMatchId(matchId).get().getTeam2();
+
+    public Team getTeam2(int matchId) {
+        Team team = scoreboardRepo.findByMatchId(matchId).get().getTeam2();
         return team;
     }
 }

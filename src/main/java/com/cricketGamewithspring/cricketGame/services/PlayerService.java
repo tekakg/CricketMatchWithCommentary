@@ -20,6 +20,7 @@ public class PlayerService implements PlayerServiceInt {
     PlayerRepo playerRepo;
     @Autowired
     SequenceGeneratorService sequenceGeneratorService;
+
     public ResponseEntity<String> setPlayer(Player player) {//Data is directly passed to the database.
         if (playerRepo.findByName(player.getName()) != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Player already existed");
@@ -28,19 +29,19 @@ public class PlayerService implements PlayerServiceInt {
         playerRepo.save(player);
         return ResponseEntity.ok("Player is Successfully Added to the PlayerList");
     }
-    public Player getPlayer(int playerId)
-    {
-        Player player=playerRepo.findById(playerId);
+
+    public Player getPlayer(int playerId) {
+        Player player = playerRepo.findById(playerId);
         return player;
     }
-    public List<Player> getPlayerUsingRole(String role)
-    {
-        List<Player> playerList=playerRepo.findAllByRole(role);
+
+    public List<Player> getPlayerUsingRole(String role) {
+        List<Player> playerList = playerRepo.findAllByRole(role);
         return playerList;
     }
-    public Player getPlayerUsingName(String name)
-    {
-        Player player=playerRepo.findByName(name);
+
+    public Player getPlayerUsingName(String name) {
+        Player player = playerRepo.findByName(name);
         return player;
     }
 }

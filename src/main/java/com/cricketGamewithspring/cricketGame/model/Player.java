@@ -35,6 +35,7 @@ public class Player {
     public void incrementRun(int run) {
         this.run += run;
     }
+
     public void incrementBallsFaced() {
         this.BallsFaced++;
     }

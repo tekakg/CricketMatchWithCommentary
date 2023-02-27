@@ -30,6 +30,7 @@ public class CricketService implements CricketServiceInt {
     private final SequenceGeneratorService sequenceGeneratorService;
     private final Match match;
     private final Scoreboard scoreboard;
+
     public Scoreboard createMatch(MatchDetail matchDetail) {//Data is directly passed to the database.
         if (matchDetail.getOvers() <= 0) {
             throw new ResourceNotFound("Wrong Input:" + " " + "Overs should not be less than or equal to 0.");
@@ -40,13 +41,11 @@ public class CricketService implements CricketServiceInt {
         List<Integer> team1PlayerId = matchDetail.getTeam1Players();
         List<Integer> team2PlayerId = matchDetail.getTeam2Players();
 
-        if(team1PlayerId.size()!=matchDetail.getPlayerCount())
-        {
+        if (team1PlayerId.size() != matchDetail.getPlayerCount()) {
             throw new ResourceNotFound("Wrong Input:" + " " + "team1Players size should be equal to playerCount");
         }
 
-        if(team2PlayerId.size()!=matchDetail.getPlayerCount())
-        {
+        if (team2PlayerId.size() != matchDetail.getPlayerCount()) {
             throw new ResourceNotFound("Wrong Input:" + " " + "team2Players size should be equal to playerCount");
         }
 
@@ -91,9 +90,9 @@ public class CricketService implements CricketServiceInt {
         }
         team2.setListOfPlayers(playerTeam2);
         match.setTotalOvers(matchDetail.getOvers());
-        StartMatchServiceInt startMatchService=new StartMatchService();
+        StartMatchServiceInt startMatchService = new StartMatchService();
         match.setId(sequenceGeneratorService.generateSequence(match.SEQUENCE_NAME));
         scoreboard.setScoreBoardId(sequenceGeneratorService.generateSequence(scoreboard.SEQUENCE_NAME));
-        return startMatchService.startMatch(team1,team2,match,scoreboard,matchRepo,scoreboardRepo);
+        return startMatchService.startMatch(team1, team2, match, scoreboard, matchRepo, scoreboardRepo);
     }
 }
