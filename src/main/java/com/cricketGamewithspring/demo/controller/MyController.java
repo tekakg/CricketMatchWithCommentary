@@ -4,6 +4,7 @@ import com.cricketGamewithspring.demo.model.MatchDetail;
 import com.cricketGamewithspring.demo.model.Player;
 import com.cricketGamewithspring.demo.model.Scoreboard;
 import com.cricketGamewithspring.demo.services.CricketService;
+import com.cricketGamewithspring.demo.services.CricketServiceInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,9 @@ public class MyController {
 
     @PostMapping("/match-info")
     public Scoreboard setMatch(@RequestBody MatchDetail matchDetail) {
-        //service will create the match object and save it in CricketDao.
+        //service will create the match object and save it in MatchDao.
+     //   System.out.println(matchDetail.getTeam1Players().size());
+        System.out.println(matchDetail);
         return cricketService.createMatch(matchDetail);
     }
 

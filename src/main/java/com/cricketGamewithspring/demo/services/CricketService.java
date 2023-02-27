@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Service
@@ -22,7 +23,6 @@ import java.util.ArrayList;
 @Slf4j
 
 public class CricketService {
-
 
     private final MatchRepo matchRepo;
 
@@ -41,13 +41,15 @@ public class CricketService {
 
     public Scoreboard createMatch(MatchDetail matchDetail) {//Data is directly passed to the database.
         if (matchDetail.getOvers() <= 0) {
+            System.out.println(matchDetail.getOvers());
             return null;
         }
         if (matchDetail.getPlayerCount() <= 0) {
+            System.out.println(matchDetail.getPlayerCount());
             return null;
         }
-        int[] team1playerid = matchDetail.getTeam1Players();
-        int[] team2playerid = matchDetail.getTeam2Players();
+        List<Integer>team1playerid = matchDetail.getTeam1Players();
+        List<Integer>team2playerid = matchDetail.getTeam2Players();
 
         for (int playerid : team1playerid) {   //checking whether all players present in database or not.
             if (playerRepo.findById(playerid) == null) {
@@ -56,6 +58,7 @@ public class CricketService {
             }
         }
         for (int playerid : team2playerid) {
+            System.out.println(playerid);
             if (playerRepo.findById(playerid) == null) {
 //                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No information for the player is present");
                 return null;
