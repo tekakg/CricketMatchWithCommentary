@@ -22,7 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 
-public class CricketService {
+public class CricketService implements CricketServiceInt {
 
     private final MatchRepo matchRepo;
 

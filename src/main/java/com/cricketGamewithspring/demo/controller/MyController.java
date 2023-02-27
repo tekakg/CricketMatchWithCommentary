@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyController {
 
     @Autowired
-    private CricketService cricketService;
+    private CricketServiceInt cricketService;
 
     @GetMapping("/")
     public String message() {
