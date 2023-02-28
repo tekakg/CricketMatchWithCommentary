@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Service
@@ -25,14 +26,13 @@ public class PlayerService implements PlayerServiceInt {
         if (playerRepo.findByName(player.getName()) != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Player already existed");
         }
-        player.setId(sequenceGeneratorService.generateSequence(Player.SEQUENCE_NAME));
         playerRepo.save(player);
         return ResponseEntity.ok("Player is Successfully Added to the PlayerList");
     }
 
     public Player getPlayer(int playerId) {
-        Player player = playerRepo.findById(playerId);
-        return player;
+        Optional<Player> player = playerRepo.findById(playerId);
+        return player.get();
     }
 
     public List<Player> getPlayerUsingRole(String role) {

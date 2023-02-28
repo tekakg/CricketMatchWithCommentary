@@ -1,17 +1,21 @@
 package com.cricketGamewithspring.cricketGame.Repo;
 
 import com.cricketGamewithspring.cricketGame.model.Player;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("PlayerRepo")
-public interface PlayerRepo extends MongoRepository<Player, Integer> {
-    Player findByName(String name);
+@Repository
+public interface PlayerRepo extends JpaRepository<Player, Integer> {
+    @Query(value = "SELECT * FROM Player p WHERE p.name = :name", nativeQuery = true)
+    Player findByName(@Param("name") String name);
 
-    Player findById(int id);
+    @Query(value = "SELECT * FROM Player p WHERE p.role = :role", nativeQuery = true)
+    List<Player> findAllByRole(@Param("role") String role);
 
-    List<Player> findAllByRole(String role);
+    int countById(int id);
 
 }

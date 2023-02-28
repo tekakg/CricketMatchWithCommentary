@@ -58,18 +58,24 @@ public class MyController {
     }
 
     @GetMapping("/match-history/{matchId}")
-    public Optional<Match> getMatch(@PathVariable String matchId) {
+    public Match getMatch(@PathVariable String matchId) {
         Optional<Match> match = matchService.getMatch(Integer.parseInt(matchId));
-        return Optional.ofNullable(match.orElse(null));
+        if (match.stream().count() == 0)
+            throw new ResourceNotFound("No match with this matchId");
+        return match.get();
     }
 
     @GetMapping("/player-info-using-name/{playerName}")
     public Player getPlayerUsingName(@PathVariable String playerName) {
+        if (playerService.getPlayerUsingName(playerName) == null)
+            throw new ResourceNotFound("No player with this name");
         return playerService.getPlayerUsingName(playerName);
     }
 
     @GetMapping("/players-info-using-role/{playerRole}")
     public List<Player> getPlayerUsingRole(@PathVariable String playerRole) {
+        if (playerService.getPlayerUsingRole(playerRole) == null)
+            throw new ResourceNotFound("No player with this role");
         return playerService.getPlayerUsingRole(playerRole);
     }
 

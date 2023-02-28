@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Service
@@ -50,13 +51,13 @@ public class CricketService implements CricketServiceInt {
         }
 
         for (int playerId : team1PlayerId) {   //checking whether all players present in database or not.
-            if (playerRepo.findById(playerId) == null) {
+            if (playerRepo.countById(playerId) == 0) {
                 throw new ResourceNotFound("Wrong Input:" + " " + "playerNumber" + " " + playerId + " " + "is not found.");
             }
         }
 
         for (int playerId : team2PlayerId) {
-            if (playerRepo.findById(playerId) == null) {
+            if (playerRepo.countById(playerId) == 0) {
                 throw new ResourceNotFound("Wrong Input:" + " " + "playerNumber" + " " + playerId + " " + "is not found.");
             }
         }
@@ -72,8 +73,8 @@ public class CricketService implements CricketServiceInt {
         team1.setTotalPlayers(matchDetail.getPlayerCount());
         ArrayList<Player> playerTeam1 = new ArrayList<>();
         for (int playerId : matchDetail.getTeam1Players()) {
-            Player nplayer = playerRepo.findById(playerId);
-            playerTeam1.add(nplayer);
+            Optional<Player> nPlayer = playerRepo.findById(playerId);
+            playerTeam1.add(nPlayer.get());
 
         }
         team1.setListOfPlayers(playerTeam1);
@@ -85,8 +86,8 @@ public class CricketService implements CricketServiceInt {
         team2.setTotalPlayers(matchDetail.getPlayerCount());
         ArrayList<Player> playerTeam2 = new ArrayList<>();
         for (int playerId : matchDetail.getTeam2Players()) {
-            Player nplayer = playerRepo.findById(playerId);
-            playerTeam2.add(nplayer);
+            Optional<Player> nPlayer = playerRepo.findById(playerId);
+            playerTeam2.add(nPlayer.get());
         }
         team2.setListOfPlayers(playerTeam2);
         match.setTotalOvers(matchDetail.getOvers());

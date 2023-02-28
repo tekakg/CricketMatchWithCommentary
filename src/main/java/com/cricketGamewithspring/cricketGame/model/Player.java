@@ -4,27 +4,21 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.index.CompoundIndex;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.stereotype.Component;
+import org.hibernate.annotations.Index;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Component
-@Document(collection = "PlayerList")
-@CompoundIndex(name="playerName",def = "{'name':1}")
-@CompoundIndex(name="playerRole",def = "{'role':1}")
-@CompoundIndex(name="matchId",def = "{'id':1}")
+@Entity(name = "player")
 public class Player {
-    @Transient
-    public static final String SEQUENCE_NAME = "players_sequence";
+
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Index(name = "playerId")
     private int id;
-    @Field("name")
+    @Index(name = "playerName")
     private String name;
-    @Field("role")
+    @Index(name = "playerRole")
     private String role;
     private int run;
     private int BallsFaced;
