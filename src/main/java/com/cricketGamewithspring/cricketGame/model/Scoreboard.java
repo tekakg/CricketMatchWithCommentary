@@ -22,7 +22,12 @@ public class Scoreboard {
     private int scoreBoardId;
     private int matchId;
     private Team team1;
-
     private Team team2;
+    public Scoreboard(int scoreBoardId,int matchId)
+    {
+        this.scoreBoardId=scoreBoardId;
+        this.matchId=matchId;
+    }
+
 
 }

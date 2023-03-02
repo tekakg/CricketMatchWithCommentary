@@ -1,10 +1,11 @@
-package com.cricketGamewithspring.cricketGame;
+package com.cricketGamewithspring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+
 @SpringBootTest
-class DemoApplicationTests {
+class CricketGameTests {
 
 	@Test
 	void contextLoads() {

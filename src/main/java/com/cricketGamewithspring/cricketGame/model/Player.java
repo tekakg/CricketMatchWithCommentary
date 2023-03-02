@@ -41,5 +41,11 @@ public class Player {
     public void incrementBallsBowled() {
         this.BallsBowled++;
     }
+    public Player(int id, String name, String role)
+    {
+        this.id=id;
+        this.name=name;
+        this.role=role;
+    }
 }
 
