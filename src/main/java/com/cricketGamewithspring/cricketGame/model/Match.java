@@ -37,4 +37,13 @@ public class Match {
     public ArrayList<Ball> getCommentary() {
         return commentary;
     }
+
+    public Match(int id, int totalOvers, String team1Name, String team2Name)
+    {
+        this.id=id;
+        this.totalOvers=totalOvers;
+        this.team1Name=team1Name;
+        this.team2Name=team2Name;
+    }
+
 }
