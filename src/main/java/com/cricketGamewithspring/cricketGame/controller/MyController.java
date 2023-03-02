@@ -6,10 +6,10 @@ import com.cricketGamewithspring.cricketGame.model.Match;
 import com.cricketGamewithspring.cricketGame.model.MatchDetail;
 import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.model.Scoreboard;
-import com.cricketGamewithspring.cricketGame.serviceInt.CricketServiceInt;
-import com.cricketGamewithspring.cricketGame.serviceInt.MatchDetailServiceInt;
-import com.cricketGamewithspring.cricketGame.serviceInt.PlayerServiceInt;
-import com.cricketGamewithspring.cricketGame.serviceInt.ScoreboardServiceInt;
+import com.cricketGamewithspring.cricketGame.services.CricketService;
+import com.cricketGamewithspring.cricketGame.services.MatchDetailService;
+import com.cricketGamewithspring.cricketGame.services.PlayerService;
+import com.cricketGamewithspring.cricketGame.services.ScoreboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,16 +21,16 @@ import java.util.Optional;
 public class MyController {
 
     @Autowired
-    private CricketServiceInt cricketService;
+    private CricketService cricketService;
 
     @Autowired
-    private ScoreboardServiceInt scoreboardService;
+    private ScoreboardService scoreboardService;
 
     @Autowired
-    private MatchDetailServiceInt matchService;
+    private MatchDetailService matchService;
 
     @Autowired
-    private PlayerServiceInt playerService;
+    private PlayerService playerService;
 
     @GetMapping("/")
     public String message() {

@@ -1,9 +1,9 @@
-package com.cricketGamewithspring.cricketGame.serviceInt;
+package com.cricketGamewithspring.cricketGame.services;
 
 import com.cricketGamewithspring.cricketGame.model.Match;
 
 import java.util.Optional;
 
-public interface MatchDetailServiceInt {
+public interface MatchDetailService {
     Optional<Match> getMatch(int parseInt);
 }

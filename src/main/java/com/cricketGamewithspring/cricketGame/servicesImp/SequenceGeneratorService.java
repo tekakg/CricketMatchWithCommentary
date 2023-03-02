@@ -1,4 +1,4 @@
-package com.cricketGamewithspring.cricketGame.services;
+package com.cricketGamewithspring.cricketGame.servicesImp;
 
 import com.cricketGamewithspring.cricketGame.model.DatabaseSequence;
 import lombok.Data;

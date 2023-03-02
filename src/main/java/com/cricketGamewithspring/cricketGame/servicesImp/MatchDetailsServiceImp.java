@@ -1,8 +1,8 @@
-package com.cricketGamewithspring.cricketGame.services;
+package com.cricketGamewithspring.cricketGame.servicesImp;
 
 import com.cricketGamewithspring.cricketGame.Repo.MatchRepo;
 import com.cricketGamewithspring.cricketGame.model.Match;
-import com.cricketGamewithspring.cricketGame.serviceInt.MatchDetailServiceInt;
+import com.cricketGamewithspring.cricketGame.services.MatchDetailService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.Optional;
 @Data
 @Service
 @RequiredArgsConstructor
-public class MatchDetailsService implements MatchDetailServiceInt {
+public class MatchDetailsServiceImp implements MatchDetailService {
 
     @Autowired
     MatchRepo matchRepo;
