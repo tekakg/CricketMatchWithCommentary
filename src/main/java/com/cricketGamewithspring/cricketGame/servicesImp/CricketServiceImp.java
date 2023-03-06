@@ -9,9 +9,12 @@ import com.cricketGamewithspring.cricketGame.model.Team;
 import com.cricketGamewithspring.cricketGame.model.*;
 import com.cricketGamewithspring.cricketGame.services.CricketService;
 import com.cricketGamewithspring.cricketGame.services.StartMatchService;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,17 +23,27 @@ import java.util.Optional;
 
 @Data
 @Service
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Slf4j
-
 public class CricketServiceImp implements CricketService {
-    private final MatchRepo matchRepo;
-    private final PlayerRepo playerRepo;
-    private final MatchDetailRepo matchDetailRepo;
-    private final ScoreboardRepo scoreboardRepo;
-    private final SequenceGeneratorService sequenceGeneratorService;
-    private final Match match;
-    private final Scoreboard scoreboard;
+    @Autowired
+    private  MatchRepo matchRepo;
+    @Autowired
+    private PlayerRepo playerRepo;
+    @Autowired
+    private MatchDetailRepo matchDetailRepo;
+    @Autowired
+    private ScoreboardRepo scoreboardRepo;
+    @Autowired
+    private  SequenceGeneratorService sequenceGeneratorService;
+
+    @Autowired
+    private StartMatchServiceImp startMatchServiceImp;
+    @Autowired
+    private Match match;
+    @Autowired
+    private Scoreboard scoreboard;
 
     public Scoreboard createMatch(MatchDetail matchDetail) {//Data is directly passed to the database.
         if (matchDetail.getOvers() <= 0) {
@@ -91,9 +104,9 @@ public class CricketServiceImp implements CricketService {
         }
         team2.setListOfPlayers(playerTeam2);
         match.setTotalOvers(matchDetail.getOvers());
-        StartMatchService startMatchService = new StartMatchServiceImp();
         match.setId(sequenceGeneratorService.generateSequence(match.SEQUENCE_NAME));
         scoreboard.setScoreBoardId(sequenceGeneratorService.generateSequence(scoreboard.SEQUENCE_NAME));
-        return startMatchService.startMatch(team1, team2, match, scoreboard, matchRepo, scoreboardRepo);
+        scoreboard=startMatchServiceImp.startMatch(team1, team2, match, scoreboard, matchRepo, scoreboardRepo);
+        return scoreboard;
     }
 }

@@ -26,8 +26,10 @@ public class PlayerServiceImp implements PlayerService {
         if (playerRepo.findByName(player.getName()) != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Player already existed");
         }
-        playerRepo.save(player);
-        return ResponseEntity.ok("Player is Successfully Added to the PlayerList");
+        else {
+            playerRepo.save(player);
+            return ResponseEntity.ok("Player is Successfully Added to the PlayerList");
+        }
     }
 
     public Player getPlayer(int playerId) {

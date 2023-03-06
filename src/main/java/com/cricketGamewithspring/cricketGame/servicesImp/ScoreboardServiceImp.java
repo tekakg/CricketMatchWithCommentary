@@ -28,17 +28,15 @@ public class ScoreboardServiceImp implements ScoreboardService {
 
     public Team getTeam1(int matchId) {
         Optional<Scoreboard> scoreboard = scoreboardRepo.findByMatchId(matchId);
-        if (scoreboard.stream().count() == 0)
+        if (scoreboard.stream().findAny().isEmpty())
             throw new ResourceNotFound("No Match corresponding to this matchId");
-        Team team = scoreboardRepo.findByMatchId(matchId).get().getTeam1();
-        return team;
+        return scoreboard.get().getTeam1();
     }
 
     public Team getTeam2(int matchId) {
         Optional<Scoreboard> scoreboard = scoreboardRepo.findByMatchId(matchId);
         if (scoreboard.stream().count() == 0)
             throw new ResourceNotFound("No Match corresponding to this matchId");
-        Team team = scoreboardRepo.findByMatchId(matchId).get().getTeam2();
-        return team;
+        return scoreboard.get().getTeam2();
     }
 }

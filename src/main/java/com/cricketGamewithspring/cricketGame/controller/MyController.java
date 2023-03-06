@@ -69,6 +69,7 @@ public class MyController {
     public Player getPlayerUsingName(@PathVariable String playerName) {
         if (playerService.getPlayerUsingName(playerName) == null)
             throw new ResourceNotFound("No player with this name");
+
         return playerService.getPlayerUsingName(playerName);
     }
 

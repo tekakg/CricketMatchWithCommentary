@@ -1,4 +1,5 @@
 package com.cricketGamewithspring.ControllerTest;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 
@@ -12,11 +13,15 @@ import com.cricketGamewithspring.cricketGame.services.CricketService;
 import com.cricketGamewithspring.cricketGame.services.MatchDetailService;
 import com.cricketGamewithspring.cricketGame.services.PlayerService;
 import com.cricketGamewithspring.cricketGame.services.ScoreboardService;
+import com.cricketGamewithspring.cricketGame.servicesImp.ScoreboardServiceImp;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -24,15 +29,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
+
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @WebMvcTest(MyController.class)
-@ContextConfiguration(classes= MyController.class)
+@ContextConfiguration(classes = MyController.class)
 class MyControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -127,12 +131,13 @@ class MyControllerTest {
     void setPlayer() throws Exception{
         ResponseEntity<String>responseEntity=ResponseEntity.ok("Player is Successfully Added to the PlayerList");
         Player player=new Player(1,"Player1","Batsman");
-        when(playerService.setPlayer(player)).thenReturn(responseEntity);
-        String expectedResult=objectMapper.writeValueAsString(responseEntity);
+        when(playerService.setPlayer(any())).thenReturn(responseEntity);
+        String expectedResult=responseEntity.getBody();
         mockMvc.perform(MockMvcRequestBuilders.post("/set-player-info")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(new MatchDetail())))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .content(objectMapper.writeValueAsString(player)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(expectedResult));
 
         }
 }

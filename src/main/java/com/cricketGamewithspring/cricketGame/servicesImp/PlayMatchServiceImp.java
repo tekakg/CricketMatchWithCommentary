@@ -20,8 +20,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlayMatchServiceImp implements PlayMatchService {
 
-    @Autowired
-    MatchRepo matchRepo;
 
     public String playMatch(Team team1, Team team2, Match match, String tossWinningTeam) {
         ArrayList<Ball> ballHistory = new ArrayList<>();
