@@ -6,10 +6,16 @@ import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.model.Team;
 import com.cricketGamewithspring.cricketGame.services.FirstInningService;
 import com.cricketGamewithspring.cricketGame.services.RandomFunctionService;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@Service
+@RequiredArgsConstructor
 public class FirstInningServiceImp implements FirstInningService {
     public List<Team> firstInnings(Team team1, Team team2, Match match, String tossWinningTeam, List<Ball> ballHistory) {
         Team BattingTeam = null;

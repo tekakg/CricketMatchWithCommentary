@@ -6,12 +6,18 @@ import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.model.Team;
 import com.cricketGamewithspring.cricketGame.services.RandomFunctionService;
 import com.cricketGamewithspring.cricketGame.services.SecondInningService;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@Service
+@RequiredArgsConstructor
 public class SecondInningServiceImp implements SecondInningService {
-    @Override
+
     public List<Team> secondInnings(Team team1, Team team2, Match match, List<Ball> ballHistory) {
         Team BowlingTeam = team2;
         Team BattingTeam = team1;

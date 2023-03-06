@@ -1,30 +1,19 @@
 package com.cricketGamewithspring.servicesImpTest;
 
 import com.cricketGamewithspring.cricketGame.Repo.PlayerRepo;
-import com.cricketGamewithspring.cricketGame.controller.MyController;
 import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.servicesImp.PlayerServiceImp;
-import com.cricketGamewithspring.cricketGame.servicesImp.ScoreboardServiceImp;
 import com.cricketGamewithspring.cricketGame.servicesImp.SequenceGeneratorService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.stubbing.OngoingStubbing;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

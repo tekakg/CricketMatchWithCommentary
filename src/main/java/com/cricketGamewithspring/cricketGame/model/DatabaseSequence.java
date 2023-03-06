@@ -17,5 +17,4 @@ public class DatabaseSequence {
     private String id;
     private int seq;
 
-    //getters and setters omitted
 }

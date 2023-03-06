@@ -95,7 +95,7 @@ public class CricketServiceImp implements CricketService {
         team2.setScore(0);
         team2.setBallNumber(0);
         team2.setOverNumber(0);
-        team1.setWicket(0);
+        team2.setWicket(0);
         team2.setTotalPlayers(matchDetail.getPlayerCount());
         ArrayList<Player> playerTeam2 = new ArrayList<>();
         for (int playerId : matchDetail.getTeam2Players()) {

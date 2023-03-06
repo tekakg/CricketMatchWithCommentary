@@ -1,8 +1,7 @@
 package com.cricketGamewithspring.servicesImpTest;
 
-import java.lang.Object;
-import java.util.Optional;
 
+import java.util.Optional;
 import com.cricketGamewithspring.cricketGame.Repo.ScoreboardRepo;
 import com.cricketGamewithspring.cricketGame.model.Scoreboard;
 import com.cricketGamewithspring.cricketGame.model.Team;
@@ -11,17 +10,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
-
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = ScoreboardServiceImp.class)

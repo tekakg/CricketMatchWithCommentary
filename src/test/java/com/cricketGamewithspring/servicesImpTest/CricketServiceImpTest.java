@@ -6,27 +6,20 @@ import com.cricketGamewithspring.cricketGame.Repo.PlayerRepo;
 import com.cricketGamewithspring.cricketGame.Repo.ScoreboardRepo;
 import com.cricketGamewithspring.cricketGame.model.*;
 import com.cricketGamewithspring.cricketGame.servicesImp.CricketServiceImp;
-import com.cricketGamewithspring.cricketGame.servicesImp.MatchDetailsServiceImp;
 import com.cricketGamewithspring.cricketGame.servicesImp.SequenceGeneratorService;
 import com.cricketGamewithspring.cricketGame.servicesImp.StartMatchServiceImp;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -57,7 +50,6 @@ public class CricketServiceImpTest {
     @Test
     public void createMatch() {
         MatchDetail matchDetail = new MatchDetail();
-        matchDetail.setId(1);
         matchDetail.setOvers(10);
         matchDetail.setPlayerCount(5);
         matchDetail.setTeam1Name("Team 1");
@@ -83,7 +75,7 @@ public class CricketServiceImpTest {
         Scoreboard nScoreboard=new Scoreboard();
         nScoreboard.setScoreBoardId(1);
         Match nmatch=new Match();
-        when(startMatchServiceImp.startMatch(team1,team2,match,scoreboard,matchRepo,scoreboardRepo)).thenReturn(nScoreboard);
+        when(startMatchServiceImp.startMatch(any(),any(),any(),any(),any(),any())).thenReturn(nScoreboard);
         Scoreboard output=cricketServiceImp.createMatch(matchDetail);
 
         verify(playerRepo).countById(1);
@@ -107,9 +99,8 @@ public class CricketServiceImpTest {
         verify(playerRepo).findById(8);
         verify(playerRepo).findById(9);
         verify(playerRepo).findById(10);
-
         verify(matchDetailRepo).save(matchDetail);
-
-
+        assertEquals(output,nScoreboard);
     }
+
 }
