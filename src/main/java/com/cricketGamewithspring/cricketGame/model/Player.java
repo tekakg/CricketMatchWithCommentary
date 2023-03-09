@@ -9,7 +9,7 @@ import org.hibernate.annotations.Index;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "playerDetail")
+@Entity(name = "player")
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
