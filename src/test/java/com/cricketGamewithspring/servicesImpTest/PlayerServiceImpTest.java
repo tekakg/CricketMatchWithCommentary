@@ -11,9 +11,11 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -24,48 +26,45 @@ import static org.mockito.Mockito.when;
 class PlayerServiceImpTest {
 
     @MockBean
-    PlayerRepo playerRepo;
+    private PlayerRepo playerRepo;
 
     @InjectMocks
-    PlayerServiceImp playerServiceImp;
+    private PlayerServiceImp playerServiceImp;
 
     @MockBean
-    SequenceGeneratorService sequenceGeneratorService;
+    private SequenceGeneratorService sequenceGeneratorService;
 
     @Test
-    void getPlayerUsingRole() throws Exception
-    {
-        List<Player>listPlayers=new ArrayList<>();
-        Player nplayer=new Player();
+    void getPlayerUsingRole() throws Exception {
+        List<Player> listPlayers = new ArrayList<>();
+        Player nplayer = new Player();
         listPlayers.add(nplayer);
         when(playerRepo.findAllByRole(anyString())).thenReturn(listPlayers);
-        List<Player> expectedPlayerList=playerServiceImp.getPlayerUsingRole("Batsman");
-        Assertions.assertEquals(expectedPlayerList,listPlayers);
+        List<Player> expectedPlayerList = playerServiceImp.getPlayerUsingRole("Batsman");
+        Assertions.assertEquals(expectedPlayerList, listPlayers);
     }
 
     @Test
-    void getPlayerUsingName() throws Exception
-    {
-        Player nplayer=new Player();
+    void getPlayerUsingName() throws Exception {
+        Player nplayer = new Player();
         when(playerRepo.findByName(anyString())).thenReturn(nplayer);
-        Player expectedPlayer= playerServiceImp.getPlayerUsingName("Virat");
-        Assertions.assertEquals(expectedPlayer,nplayer);
+        Player expectedPlayer = playerServiceImp.getPlayerUsingName("Virat");
+        Assertions.assertEquals(expectedPlayer, nplayer);
     }
 
     @Test
-    void setPlayer() throws Exception
-    {
-        Player player=new Player(1,"Player1","Batsman");
+    void setPlayer() throws Exception {
+        Player player = new Player(1, "Player1", "Batsman");
         playerServiceImp.setPlayer(player);
         verify(playerRepo).save(player);//as save is not returning any thing.
     }
 
     @Test
-    void getPlayer() throws Exception{
-        Player nplayer=new Player();
+    void getPlayer() throws Exception {
+        Player nplayer = new Player();
         when(playerRepo.findById(11)).thenReturn(Optional.of(nplayer));
-        Player expectedPlayer=playerServiceImp.getPlayer(11);
-        Assertions.assertEquals(expectedPlayer,nplayer);
+        Player expectedPlayer = playerServiceImp.getPlayer(11);
+        Assertions.assertEquals(expectedPlayer, nplayer);
     }
 
 }

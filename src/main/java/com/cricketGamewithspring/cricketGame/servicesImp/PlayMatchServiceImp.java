@@ -20,11 +20,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlayMatchServiceImp implements PlayMatchService {
 
-        @Autowired
-        FirstInningServiceImp firstInningServiceImp;
+    @Autowired
+    private FirstInningServiceImp firstInningServiceImp;
 
-        @Autowired
-        SecondInningServiceImp secondInningServiceImp;
+    @Autowired
+    private SecondInningServiceImp secondInningServiceImp;
 
     public String playMatch(Team team1, Team team2, Match match, String tossWinningTeam) {
         List<Ball> ballHistory = new ArrayList<>();

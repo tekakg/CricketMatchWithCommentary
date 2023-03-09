@@ -5,9 +5,7 @@ import com.cricketGamewithspring.cricketGame.Repo.ScoreboardRepo;
 import com.cricketGamewithspring.cricketGame.model.Match;
 import com.cricketGamewithspring.cricketGame.model.Scoreboard;
 import com.cricketGamewithspring.cricketGame.model.Team;
-import com.cricketGamewithspring.cricketGame.services.PlayMatchService;
 import com.cricketGamewithspring.cricketGame.services.StartMatchService;
-import com.cricketGamewithspring.cricketGame.services.TossService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +17,16 @@ import org.springframework.stereotype.Service;
 public class StartMatchServiceImp implements StartMatchService {
 
     @Autowired
-    TossServiceImp tossServiceImp;
-
+    private TossServiceImp tossServiceImp;
     @Autowired
-    PlayMatchServiceImp playMatchServiceImp;
+    private PlayMatchServiceImp playMatchServiceImp;
+
     public Scoreboard startMatch(Team team1, Team team2, Match match, Scoreboard scoreboard, MatchRepo matchRepo, ScoreboardRepo scoreboardRepo) {
         match.setTeam1Name(team1.getTeamName());
         match.setTeam2Name(team2.getTeamName());
         String tossWinningTeam = tossServiceImp.getToss(team1, team2);
         match.setTossResult(tossWinningTeam + " " + "has won the toss and elected to bat first");
-        String matchWinningTeam=playMatchServiceImp.playMatch(team1, team2, match, tossWinningTeam);
+        String matchWinningTeam = playMatchServiceImp.playMatch(team1, team2, match, tossWinningTeam);
         match.setMatchResult(matchWinningTeam);
         matchRepo.save(match);
         scoreboard.setMatchId(match.getId());

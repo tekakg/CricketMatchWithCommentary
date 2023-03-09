@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,8 @@ public class SecondInningServiceImpTest {
     void secondInnings() {
         // Arrange
         Team team1 = new Team();
-        Team team2 = new Team();team1.setTeamName("Team1");
+        Team team2 = new Team();
+        team1.setTeamName("Team1");
         team2.setTeamName("Team2");
         team1.setTotalPlayers(2);
         team2.setTotalPlayers(2);

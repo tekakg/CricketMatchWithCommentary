@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-//This is just for taking data from postman.
 
 @Data
 @NoArgsConstructor

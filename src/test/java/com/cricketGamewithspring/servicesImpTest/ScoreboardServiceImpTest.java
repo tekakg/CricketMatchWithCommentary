@@ -2,6 +2,7 @@ package com.cricketGamewithspring.servicesImpTest;
 
 
 import java.util.Optional;
+
 import com.cricketGamewithspring.cricketGame.Repo.ScoreboardRepo;
 import com.cricketGamewithspring.cricketGame.model.Scoreboard;
 import com.cricketGamewithspring.cricketGame.model.Team;
@@ -13,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
@@ -20,17 +22,17 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class ScoreboardServiceImpTest {
     @InjectMocks
-    ScoreboardServiceImp scoreboardServiceImp;
+    private ScoreboardServiceImp scoreboardServiceImp;
 
     @MockBean
-    ScoreboardRepo scoreboardRepo;
+    private ScoreboardRepo scoreboardRepo;
 
 
     @Test
     void getScoreboard() throws Exception {
         Scoreboard scoreboard = new Scoreboard();
         when(scoreboardRepo.findByMatchId(anyInt())).thenReturn(Optional.of(scoreboard));
-        Optional<Scoreboard> nScoreboard=scoreboardServiceImp.getScoreboard(11);
+        Optional<Scoreboard> nScoreboard = scoreboardServiceImp.getScoreboard(11);
         Assertions.assertEquals(scoreboard, nScoreboard.get());
     }
 
@@ -48,12 +50,12 @@ public class ScoreboardServiceImpTest {
 
     @Test
     void getTeam2() throws Exception {
-        Scoreboard scoreboard=new Scoreboard();
-        Team team=new Team();
+        Scoreboard scoreboard = new Scoreboard();
+        Team team = new Team();
         team.setScore(200);
         scoreboard.setTeam2(team);
         when(scoreboardRepo.findByMatchId(anyInt())).thenReturn(Optional.of(scoreboard));
-        Team nteam=scoreboardServiceImp.getTeam2(11);
-        Assertions.assertEquals(nteam.getScore(),200);
+        Team nteam = scoreboardServiceImp.getTeam2(11);
+        Assertions.assertEquals(nteam.getScore(), 200);
     }
 }

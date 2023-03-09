@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = MatchDetailsServiceImp.class)
@@ -15,10 +16,10 @@ import static org.mockito.Mockito.verify;
 public class MatchDetailsServiceImpTest {
 
     @InjectMocks
-    MatchDetailsServiceImp matchDetailsServiceImp;
+    private MatchDetailsServiceImp matchDetailsServiceImp;
 
     @MockBean
-    MatchRepo matchRepo;
+    private MatchRepo matchRepo;
 
     @Test
     void getMatch() throws Exception {

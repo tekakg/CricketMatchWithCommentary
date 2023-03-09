@@ -18,15 +18,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PlayerServiceImp implements PlayerService {
     @Autowired
-    PlayerRepo playerRepo;
+    private PlayerRepo playerRepo;
     @Autowired
-    SequenceGeneratorService sequenceGeneratorService;
+    private SequenceGeneratorService sequenceGeneratorService;
 
     public ResponseEntity<String> setPlayer(Player player) {//Data is directly passed to the database.
         if (playerRepo.findByName(player.getName()) != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Player already existed");
-        }
-        else {
+        } else {
             playerRepo.save(player);
             return ResponseEntity.ok("Player is Successfully Added to the PlayerList");
         }

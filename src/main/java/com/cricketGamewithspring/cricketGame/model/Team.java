@@ -42,13 +42,13 @@ public class Team {
         }
         return nwPlayer;
     }
-    public Team(String teamName, int totalPlayers, int score, int wicket, int overNumber, int ballNumber)
-    {
-        this.teamName=teamName;
-        this.totalPlayers=totalPlayers;
-        this.score=score;
-        this.wicket=wicket;
-        this.overNumber=overNumber;
-        this.ballNumber=ballNumber;
+
+    public Team(String teamName, int totalPlayers, int score, int wicket, int overNumber, int ballNumber) {
+        this.teamName = teamName;
+        this.totalPlayers = totalPlayers;
+        this.score = score;
+        this.wicket = wicket;
+        this.overNumber = overNumber;
+        this.ballNumber = ballNumber;
     }
 }

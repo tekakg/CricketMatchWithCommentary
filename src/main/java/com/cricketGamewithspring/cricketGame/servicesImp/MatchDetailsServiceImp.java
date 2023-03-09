@@ -16,7 +16,7 @@ import java.util.Optional;
 public class MatchDetailsServiceImp implements MatchDetailService {
 
     @Autowired
-    MatchRepo matchRepo;
+    private MatchRepo matchRepo;
 
     public Optional<Match> getMatch(int matchId) {
         Optional<Match> match = matchRepo.findById(matchId);

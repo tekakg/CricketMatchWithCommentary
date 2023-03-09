@@ -28,7 +28,7 @@ import java.util.Optional;
 @Slf4j
 public class CricketServiceImp implements CricketService {
     @Autowired
-    private  MatchRepo matchRepo;
+    private MatchRepo matchRepo;
     @Autowired
     private PlayerRepo playerRepo;
     @Autowired
@@ -36,7 +36,7 @@ public class CricketServiceImp implements CricketService {
     @Autowired
     private ScoreboardRepo scoreboardRepo;
     @Autowired
-    private  SequenceGeneratorService sequenceGeneratorService;
+    private SequenceGeneratorService sequenceGeneratorService;
 
     @Autowired
     private StartMatchServiceImp startMatchServiceImp;
@@ -106,7 +106,7 @@ public class CricketServiceImp implements CricketService {
         match.setTotalOvers(matchDetail.getOvers());
         match.setId(sequenceGeneratorService.generateSequence(match.SEQUENCE_NAME));
         scoreboard.setScoreBoardId(sequenceGeneratorService.generateSequence(scoreboard.SEQUENCE_NAME));
-        scoreboard=startMatchServiceImp.startMatch(team1, team2, match, scoreboard, matchRepo, scoreboardRepo);
+        scoreboard = startMatchServiceImp.startMatch(team1, team2, match, scoreboard, matchRepo, scoreboardRepo);
         return scoreboard;
     }
 }

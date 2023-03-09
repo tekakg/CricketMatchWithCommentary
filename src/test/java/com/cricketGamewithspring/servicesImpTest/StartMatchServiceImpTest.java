@@ -15,8 +15,10 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -38,6 +40,7 @@ public class StartMatchServiceImpTest {
 
     @MockBean
     PlayMatchServiceImp playMatchServiceImp;
+
     @Test
     public void StartMatch() {
 
@@ -59,17 +62,17 @@ public class StartMatchServiceImpTest {
         team2Players.add(player4);
         team1.setListOfPlayers(team1Players);
         team2.setListOfPlayers(team2Players);
-        when(tossServiceImp.getToss(team1,team2)).thenReturn("Team1");
+        when(tossServiceImp.getToss(team1, team2)).thenReturn("Team1");
 
-        Match match=new Match();
+        Match match = new Match();
         when(playMatchServiceImp.playMatch(team1, team2, match, "Team1")).thenReturn("Team 1 won");
 
-        Scoreboard scoreboard=new Scoreboard();
+        Scoreboard scoreboard = new Scoreboard();
         scoreboard = startMatchServiceImp.startMatch(team1, team2, match, scoreboard, matchRepo, scoreboardRepo);
 
         assertEquals("Team1", match.getTeam1Name());
         assertEquals("Team2", match.getTeam2Name());
-        assertEquals("Team1"+" "+"has won the toss and elected to bat first",match.getTossResult());
+        assertEquals("Team1" + " " + "has won the toss and elected to bat first", match.getTossResult());
         assertEquals("Team 1 won", match.getMatchResult());
         assertEquals(scoreboard.getMatchId(), match.getId());
         assertEquals(team1, scoreboard.getTeam1());

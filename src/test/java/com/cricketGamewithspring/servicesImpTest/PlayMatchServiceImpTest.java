@@ -12,8 +12,10 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -23,11 +25,11 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class PlayMatchServiceImpTest {
     @InjectMocks
-    PlayMatchServiceImp playMatchService;
+    private PlayMatchServiceImp playMatchService;
     @MockBean
-    FirstInningServiceImp firstInningServiceImp;
+    private FirstInningServiceImp firstInningServiceImp;
     @MockBean
-    SecondInningServiceImp secondInningServiceImp;
+    private SecondInningServiceImp secondInningServiceImp;
 
 
     @Test
@@ -50,14 +52,14 @@ public class PlayMatchServiceImpTest {
         team2Players.add(player4);
         team1.setListOfPlayers(team1Players);
         team2.setListOfPlayers(team2Players);
-        Match match=new Match();
+        Match match = new Match();
         match.setTotalOvers(20);
-        List<Team>listTeam=new ArrayList<>();
+        List<Team> listTeam = new ArrayList<>();
         listTeam.add(team1);
         listTeam.add(team2);
-        when(firstInningServiceImp.firstInnings(any(),any(),any(),anyString(),any())).thenReturn(listTeam);
-        when(secondInningServiceImp.secondInnings(any(),any(),any(),any())).thenReturn(listTeam);
-        String Output=playMatchService.playMatch(team1,team2,match,"Team 1");
+        when(firstInningServiceImp.firstInnings(any(), any(), any(), anyString(), any())).thenReturn(listTeam);
+        when(secondInningServiceImp.secondInnings(any(), any(), any(), any())).thenReturn(listTeam);
+        String Output = playMatchService.playMatch(team1, team2, match, "Team 1");
         assertNotNull(Output);
 
     }

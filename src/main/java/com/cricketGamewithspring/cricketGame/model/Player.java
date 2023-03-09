@@ -9,9 +9,8 @@ import org.hibernate.annotations.Index;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "player")
+@Entity(name = "playerDetail")
 public class Player {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Index(name = "playerId")
@@ -41,11 +40,11 @@ public class Player {
     public void incrementBallsBowled() {
         this.BallsBowled++;
     }
-    public Player(int id, String name, String role)
-    {
-        this.id=id;
-        this.name=name;
-        this.role=role;
+
+    public Player(int id, String name, String role) {
+        this.id = id;
+        this.name = name;
+        this.role = role;
     }
 }
 

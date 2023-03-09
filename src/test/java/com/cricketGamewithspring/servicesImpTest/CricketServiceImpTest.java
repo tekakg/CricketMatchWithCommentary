@@ -14,10 +14,12 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -68,15 +70,15 @@ public class CricketServiceImpTest {
             when(playerRepo.findById(i)).thenReturn(Optional.of(player));
             when(playerRepo.countById(i)).thenReturn(1);
         }
-        Team team1=new Team();
-        Team team2=new Team();
+        Team team1 = new Team();
+        Team team2 = new Team();
         when(sequenceGeneratorService.generateSequence("match_sequence")).thenReturn(1);
         when(sequenceGeneratorService.generateSequence("scoreboard_sequence")).thenReturn(2);
-        Scoreboard nScoreboard=new Scoreboard();
+        Scoreboard nScoreboard = new Scoreboard();
         nScoreboard.setScoreBoardId(1);
-        Match nmatch=new Match();
-        when(startMatchServiceImp.startMatch(any(),any(),any(),any(),any(),any())).thenReturn(nScoreboard);
-        Scoreboard output=cricketServiceImp.createMatch(matchDetail);
+        Match nmatch = new Match();
+        when(startMatchServiceImp.startMatch(any(), any(), any(), any(), any(), any())).thenReturn(nScoreboard);
+        Scoreboard output = cricketServiceImp.createMatch(matchDetail);
 
         verify(playerRepo).countById(1);
         verify(playerRepo).countById(2);
@@ -100,7 +102,7 @@ public class CricketServiceImpTest {
         verify(playerRepo).findById(9);
         verify(playerRepo).findById(10);
         verify(matchDetailRepo).save(matchDetail);
-        assertEquals(output,nScoreboard);
+        assertEquals(output, nScoreboard);
     }
 
 }

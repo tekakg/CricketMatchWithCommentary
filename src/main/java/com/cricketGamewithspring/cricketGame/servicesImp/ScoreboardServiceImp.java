@@ -18,7 +18,7 @@ import java.util.Optional;
 public class ScoreboardServiceImp implements ScoreboardService {
 
     @Autowired
-    ScoreboardRepo scoreboardRepo;
+    private ScoreboardRepo scoreboardRepo;
 
     public Optional<Scoreboard> getScoreboard(int matchId) {
 
