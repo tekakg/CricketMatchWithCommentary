@@ -1,4 +1,4 @@
-package com.cricketGamewithspring.cricketGame.Repo;
+package com.cricketGamewithspring.cricketGame.Repo.MongoRepo;
 
 import com.cricketGamewithspring.cricketGame.model.Scoreboard;
 import org.springframework.data.mongodb.repository.MongoRepository;

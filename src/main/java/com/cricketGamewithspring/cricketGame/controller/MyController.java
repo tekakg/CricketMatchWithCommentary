@@ -37,7 +37,7 @@ public class MyController {
         return "Lets Start the Match";
     }
 
-    @PostMapping("/match-info")
+    @PostMapping("/start-match")
     public Scoreboard setMatch(@RequestBody MatchDetail matchDetail) {
         return cricketService.createMatch(matchDetail);
     }

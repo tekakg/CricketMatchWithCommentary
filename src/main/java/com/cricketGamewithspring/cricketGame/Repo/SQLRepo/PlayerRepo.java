@@ -1,4 +1,4 @@
-package com.cricketGamewithspring.cricketGame.Repo;
+package com.cricketGamewithspring.cricketGame.Repo.SQLRepo;
 
 import com.cricketGamewithspring.cricketGame.model.Player;
 import org.springframework.data.jpa.repository.JpaRepository;

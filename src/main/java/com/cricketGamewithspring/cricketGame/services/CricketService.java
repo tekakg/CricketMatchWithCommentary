@@ -4,7 +4,6 @@ import com.cricketGamewithspring.cricketGame.model.MatchDetail;
 import com.cricketGamewithspring.cricketGame.model.Scoreboard;
 
 public interface CricketService {
-
-    public Scoreboard createMatch(MatchDetail matchDetail);
+     Scoreboard createMatch(MatchDetail matchDetail);
 
 }

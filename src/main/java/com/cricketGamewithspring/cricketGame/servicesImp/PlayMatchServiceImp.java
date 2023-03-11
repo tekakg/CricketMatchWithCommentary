@@ -1,12 +1,9 @@
 package com.cricketGamewithspring.cricketGame.servicesImp;
 
-import com.cricketGamewithspring.cricketGame.Repo.MatchRepo;
 import com.cricketGamewithspring.cricketGame.model.Ball;
 import com.cricketGamewithspring.cricketGame.model.Team;
 import com.cricketGamewithspring.cricketGame.model.Match;
-import com.cricketGamewithspring.cricketGame.services.FirstInningService;
 import com.cricketGamewithspring.cricketGame.services.PlayMatchService;
-import com.cricketGamewithspring.cricketGame.services.SecondInningService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +17,25 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlayMatchServiceImp implements PlayMatchService {
 
-    @Autowired
-    private FirstInningServiceImp firstInningServiceImp;
 
     @Autowired
-    private SecondInningServiceImp secondInningServiceImp;
+    private InningServiceImp inningServiceImp;
 
     public String playMatch(Team team1, Team team2, Match match, String tossWinningTeam) {
         List<Ball> ballHistory = new ArrayList<>();
-        List<Team> output = firstInningServiceImp.firstInnings(team1, team2, match, tossWinningTeam, ballHistory);
+        Team BattingTeam=null;
+        Team BowlingTeam=null;
+        if (tossWinningTeam == team1.getTeamName()) {
+            BattingTeam = team1;
+            BowlingTeam = team2;
+        } else {
+            BattingTeam = team2;
+            BowlingTeam = team1;
+        }
+        inningServiceImp.matchInnings(BattingTeam,BowlingTeam,match,ballHistory);
+        inningServiceImp.matchInnings(BowlingTeam,BattingTeam,match,ballHistory);
+        match.setCommentary((ArrayList<Ball>) ballHistory);
 
-        output = secondInningServiceImp.secondInnings(output.get(0), output.get(1), match, ballHistory);
-
-        Team BattingTeam = output.get(0);
-        Team BowlingTeam = output.get(1);
         String result;
         if (BattingTeam.getScore() > BowlingTeam.getScore()) {
             result = BattingTeam.getTeamName() + " " + "has won the match";

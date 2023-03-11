@@ -1,6 +1,6 @@
 package com.cricketGamewithspring.cricketGame.servicesImp;
 
-import com.cricketGamewithspring.cricketGame.Repo.MatchRepo;
+import com.cricketGamewithspring.cricketGame.Repo.MongoRepo.MatchRepo;
 import com.cricketGamewithspring.cricketGame.model.Match;
 import com.cricketGamewithspring.cricketGame.services.MatchDetailService;
 import lombok.Data;

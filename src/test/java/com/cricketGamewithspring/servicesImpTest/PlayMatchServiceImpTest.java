@@ -5,7 +5,6 @@ import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.model.Team;
 import com.cricketGamewithspring.cricketGame.servicesImp.FirstInningServiceImp;
 import com.cricketGamewithspring.cricketGame.servicesImp.PlayMatchServiceImp;
-import com.cricketGamewithspring.cricketGame.servicesImp.SecondInningServiceImp;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

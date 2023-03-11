@@ -1,5 +1,5 @@
 package com.cricketGamewithspring.cricketGame.services;
 
-public interface RandomFunctionService {
-    int randomFunction();
+public interface RunGeneratingService {
+    int generateRun();
 }

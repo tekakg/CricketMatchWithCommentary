@@ -1,6 +1,6 @@
 package com.cricketGamewithspring.cricketGame.servicesImp;
 
-import com.cricketGamewithspring.cricketGame.Repo.ScoreboardRepo;
+import com.cricketGamewithspring.cricketGame.Repo.MongoRepo.ScoreboardRepo;
 import com.cricketGamewithspring.cricketGame.exceptionHandler.ResourceNotFound;
 import com.cricketGamewithspring.cricketGame.model.Team;
 import com.cricketGamewithspring.cricketGame.model.Scoreboard;
@@ -16,7 +16,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ScoreboardServiceImp implements ScoreboardService {
-
     @Autowired
     private ScoreboardRepo scoreboardRepo;
 

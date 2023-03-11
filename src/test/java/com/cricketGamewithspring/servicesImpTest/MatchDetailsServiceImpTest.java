@@ -1,6 +1,6 @@
 package com.cricketGamewithspring.servicesImpTest;
 
-import com.cricketGamewithspring.cricketGame.Repo.MatchRepo;
+import com.cricketGamewithspring.cricketGame.Repo.MongoRepo.MatchRepo;
 import com.cricketGamewithspring.cricketGame.servicesImp.MatchDetailsServiceImp;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

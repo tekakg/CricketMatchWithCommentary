@@ -1,6 +1,6 @@
 package com.cricketGamewithspring.servicesImpTest;
 
-import com.cricketGamewithspring.cricketGame.Repo.PlayerRepo;
+import com.cricketGamewithspring.cricketGame.Repo.SQLRepo.PlayerRepo;
 import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.servicesImp.PlayerServiceImp;
 import com.cricketGamewithspring.cricketGame.servicesImp.SequenceGeneratorService;

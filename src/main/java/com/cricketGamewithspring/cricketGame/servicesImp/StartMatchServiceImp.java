@@ -1,7 +1,7 @@
 package com.cricketGamewithspring.cricketGame.servicesImp;
 
-import com.cricketGamewithspring.cricketGame.Repo.MatchRepo;
-import com.cricketGamewithspring.cricketGame.Repo.ScoreboardRepo;
+import com.cricketGamewithspring.cricketGame.Repo.MongoRepo.MatchRepo;
+import com.cricketGamewithspring.cricketGame.Repo.MongoRepo.ScoreboardRepo;
 import com.cricketGamewithspring.cricketGame.model.Match;
 import com.cricketGamewithspring.cricketGame.model.Scoreboard;
 import com.cricketGamewithspring.cricketGame.model.Team;
@@ -33,7 +33,6 @@ public class StartMatchServiceImp implements StartMatchService {
         scoreboard.setTeam1(team1);
         scoreboard.setTeam2(team2);
         scoreboardRepo.save(scoreboard);
-        //take help of helper function to start the game.
         return scoreboard;
     }
 }

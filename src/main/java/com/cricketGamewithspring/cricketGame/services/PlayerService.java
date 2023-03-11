@@ -6,9 +6,9 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface PlayerService {
-    public ResponseEntity<String> setPlayer(Player player);
+    ResponseEntity<String> setPlayer(Player player);
 
-    public List<Player> getPlayerUsingRole(String role);
+    List<Player> getPlayerUsingRole(String role);
 
-    public Player getPlayerUsingName(String name);
+    Player getPlayerUsingName(String name);
 }

@@ -4,7 +4,6 @@ import com.cricketGamewithspring.cricketGame.model.Ball;
 import com.cricketGamewithspring.cricketGame.model.Match;
 import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.model.Team;
-import com.cricketGamewithspring.cricketGame.servicesImp.SecondInningServiceImp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

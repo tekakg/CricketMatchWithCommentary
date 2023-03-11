@@ -1,7 +1,7 @@
 package com.cricketGamewithspring.servicesImpTest;
 
-import com.cricketGamewithspring.cricketGame.Repo.MatchRepo;
-import com.cricketGamewithspring.cricketGame.Repo.ScoreboardRepo;
+import com.cricketGamewithspring.cricketGame.Repo.MongoRepo.MatchRepo;
+import com.cricketGamewithspring.cricketGame.Repo.MongoRepo.ScoreboardRepo;
 import com.cricketGamewithspring.cricketGame.model.Match;
 import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.model.Scoreboard;

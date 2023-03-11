@@ -1,6 +1,7 @@
 package com.cricketGamewithspring.cricketGame.servicesImp;
 
-import com.cricketGamewithspring.cricketGame.Repo.PlayerRepo;
+import com.cricketGamewithspring.cricketGame.Repo.ESRepo.ElasticRepo;
+import com.cricketGamewithspring.cricketGame.Repo.SQLRepo.PlayerRepo;
 import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.services.PlayerService;
 import lombok.Data;
@@ -22,11 +23,17 @@ public class PlayerServiceImp implements PlayerService {
     @Autowired
     private SequenceGeneratorService sequenceGeneratorService;
 
-    public ResponseEntity<String> setPlayer(Player player) {//Data is directly passed to the database.
+    @Autowired
+    private ElasticRepo elasticRepo;
+    public ResponseEntity<String> setPlayer(Player player) {
         if (playerRepo.findByName(player.getName()) != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Player already existed");
-        } else {
+        }
+        else {
+            player.setId((int) playerRepo.count() +1);
             playerRepo.save(player);
+            Player savedPlayer=playerRepo.findByName(player.getName());
+            elasticRepo.save(savedPlayer);
             return ResponseEntity.ok("Player is Successfully Added to the PlayerList");
         }
     }

@@ -33,10 +33,9 @@ public class Team {
     public Player getNewBatsman(Player nonStriker, Team BattingTeam) {
         Player nwPlayer = null;
         for (Player player : BattingTeam.getListOfPlayers()) {
-            if (player.isOutOrNot() == false && player != nonStriker) {
+            if (!player.isPout() && player != nonStriker) {
                 {
-                    nwPlayer = player;
-                    break;
+                    return player;
                 }
             }
         }

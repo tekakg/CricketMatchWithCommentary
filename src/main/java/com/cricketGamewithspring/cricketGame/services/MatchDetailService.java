@@ -5,5 +5,5 @@ import com.cricketGamewithspring.cricketGame.model.Match;
 import java.util.Optional;
 
 public interface MatchDetailService {
-    public Optional<Match> getMatch(int parseInt);
+    Optional<Match> getMatch(int parseInt);
 }

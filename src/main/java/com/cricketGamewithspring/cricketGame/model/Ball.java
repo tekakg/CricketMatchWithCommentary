@@ -12,13 +12,10 @@ import org.springframework.stereotype.Component;
 public class Ball {
     private int overNumber;
     private int ballNumber;
-    private Player bowler;
-    private Player batsman;
+    private String bowler;
+    private String batsman;
     private String run;
-
-    private int Inning;
-
-    public Ball(int overNumber, int ballNumber, Player bowler, Player batsman, int run, int Inning) {
+    public Ball(int overNumber, int ballNumber, String bowler, String batsman, int run) {
         this.overNumber = overNumber;
         this.ballNumber = ballNumber;
         this.bowler = bowler;
@@ -27,7 +24,6 @@ public class Ball {
             this.run = "W";
         else
             this.run = Integer.toString(run);
-        this.Inning = Inning;
     }
 
     public int getBallNumber() {
@@ -38,11 +34,11 @@ public class Ball {
         return overNumber;
     }
 
-    public Player getBatsman() {
+    public String getBatsman() {
         return batsman;
     }
 
-    public Player getBowler() {
+    public String getBowler() {
         return bowler;
     }
 

@@ -3,7 +3,7 @@ package com.cricketGamewithspring.servicesImpTest;
 
 import java.util.Optional;
 
-import com.cricketGamewithspring.cricketGame.Repo.ScoreboardRepo;
+import com.cricketGamewithspring.cricketGame.Repo.MongoRepo.ScoreboardRepo;
 import com.cricketGamewithspring.cricketGame.model.Scoreboard;
 import com.cricketGamewithspring.cricketGame.model.Team;
 import com.cricketGamewithspring.cricketGame.servicesImp.ScoreboardServiceImp;
