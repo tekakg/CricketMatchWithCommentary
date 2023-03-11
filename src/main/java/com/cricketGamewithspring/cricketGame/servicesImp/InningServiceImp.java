@@ -17,6 +17,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class FirstInningServiceImp implements FirstInningService {
+
+    private static final Integer NO_OF_BALLS_IN_OVER = 6;
+
     public List<Team> firstInnings(Team team1, Team team2, Match match, String tossWinningTeam, List<Ball> ballHistory) {
         Team BattingTeam = null;
         Team BowlingTeam = null;
@@ -34,12 +37,12 @@ public class FirstInningServiceImp implements FirstInningService {
         Player Striker = playerNumber1;
         Player nonStriker = playerNumber2;
         Player Bowler = BowlingTeam.listOfPlayers.get(0);
-        int flag = 0;
+        int flag = 0;  // innings end
         int overnum = 0;
         int ballnum = 0;
         RandomFunctionService randomFunctionService = new RandomFunctionServiceImp();
         for (overnum = 0; overnum < match.getTotalOvers(); overnum++) {
-            for (ballnum = 0; ballnum < 6; ballnum++) {
+            for (ballnum = 0; ballnum < NO_OF_BALLS_IN_OVER; ballnum++) {
                 Bowler.incrementBallsBowled();
                 int run = randomFunctionService.randomFunction();
                 Ball nball = new Ball(overnum, ballnum + 1, Bowler, Striker, run, 1);
@@ -49,13 +52,12 @@ public class FirstInningServiceImp implements FirstInningService {
                     BattingTeam.incrementWicket();
                     Bowler.incrementWickets();
                     if (BattingTeam.getWicket() == (BattingTeam.getTotalPlayers() - 1)) {
-
                         flag = 1;
                         break;
                     } else {
                         for (Player player : BattingTeam.listOfPlayers) {
                             if (Striker == player) {
-                                player.setOutOrNot(true);
+                                player.setPout(true);
                                 Striker = BattingTeam.getNewBatsman(nonStriker, BattingTeam);
                                 break;
                             }

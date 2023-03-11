@@ -7,5 +7,5 @@ import com.cricketGamewithspring.cricketGame.model.Team;
 import java.util.List;
 
 public interface FirstInningService {
-    public List<Team> firstInnings(Team team1, Team team2, Match match, String tossWinningTeam, List<Ball> ballHistory);
+     List<Team> firstInnings(Team team1, Team team2, Match match, String tossWinningTeam, List<Ball> ballHistory);
 }
