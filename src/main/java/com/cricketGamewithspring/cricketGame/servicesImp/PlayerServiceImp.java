@@ -25,14 +25,14 @@ public class PlayerServiceImp implements PlayerService {
 
     @Autowired
     private ElasticRepo elasticRepo;
+
     public ResponseEntity<String> setPlayer(Player player) {
         if (playerRepo.findByName(player.getName()) != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Player already existed");
-        }
-        else {
-            player.setId((int) playerRepo.count() +1);
+        } else {
+            player.setId((int) playerRepo.count() + 1);
             playerRepo.save(player);
-            Player savedPlayer=playerRepo.findByName(player.getName());
+            Player savedPlayer = playerRepo.findByName(player.getName());
             elasticRepo.save(savedPlayer);
             return ResponseEntity.ok("Player is Successfully Added to the PlayerList");
         }

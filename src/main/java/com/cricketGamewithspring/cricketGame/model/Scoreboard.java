@@ -21,8 +21,10 @@ public class Scoreboard {
     @Id
     private int scoreBoardId;
     private int matchId;
+    private String matchVenue;
     private Team team1;
     private Team team2;
+    private String matchResult;
 
     public Scoreboard(int scoreBoardId, int matchId) {
         this.scoreBoardId = scoreBoardId;

@@ -1,5 +1,8 @@
 package com.cricketGamewithspring.cricketGame.services;
 
+import com.cricketGamewithspring.cricketGame.servicesImp.RunType;
+
 public interface RunGeneratingService {
-    int generateRun();
+
+    RunType generateRunType();
 }

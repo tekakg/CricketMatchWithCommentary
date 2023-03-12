@@ -8,6 +8,7 @@ import com.cricketGamewithspring.cricketGame.model.*;
 import com.cricketGamewithspring.cricketGame.servicesImp.CricketServiceImp;
 import com.cricketGamewithspring.cricketGame.servicesImp.SequenceGeneratorService;
 import com.cricketGamewithspring.cricketGame.servicesImp.StartMatchServiceImp;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -50,59 +52,37 @@ public class CricketServiceImpTest {
 
 
     @Test
-    public void createMatch() {
+    public void createMatch() throws Exception{
         MatchDetail matchDetail = new MatchDetail();
         matchDetail.setOvers(10);
-        matchDetail.setPlayerCount(5);
+        matchDetail.setPlayerCount(2);
         matchDetail.setTeam1Name("Team 1");
         matchDetail.setTeam2Name("Team 2");
-        List<Integer> team1Players = Arrays.asList(1, 2, 3, 4, 5);
-        List<Integer> team2Players = Arrays.asList(6, 7, 8, 9, 10);
+        List<Integer> team1Players = Arrays.asList(1, 2);
+        List<Integer> team2Players = Arrays.asList(3,4);
         matchDetail.setTeam1Players(team1Players);
         matchDetail.setTeam2Players(team2Players);
+        matchDetailRepo.save(matchDetail);
+        verify(matchDetailRepo).save(matchDetail);
 
         List<Player> players = new ArrayList<Player>();
-        for (int i = 1; i <= 10; i++) {
-            Player player = new Player();
-            player.setId(i);
-            player.setName("Player " + i);
-            players.add(player);
-            when(playerRepo.findById(i)).thenReturn(Optional.of(player));
-            when(playerRepo.countById(i)).thenReturn(1);
-        }
-        Team team1 = new Team();
-        Team team2 = new Team();
+        players.add(new Player(1,"arpit","batsman"));
+        players.add(new Player(2,"aditya","bowler"));
+        players.add(new Player(3,"aman","batsman"));
+        players.add(new Player(4,"apoorv","bowler"));
+        Team team1 = new Team("Australia",5,0,0,0,0);
+        Team team2 = new Team("India",5,0,0,0,0);
         when(sequenceGeneratorService.generateSequence("match_sequence")).thenReturn(1);
         when(sequenceGeneratorService.generateSequence("scoreboard_sequence")).thenReturn(2);
-        Scoreboard nScoreboard = new Scoreboard();
-        nScoreboard.setScoreBoardId(1);
-        Match nmatch = new Match();
-        when(startMatchServiceImp.startMatch(any(), any(), any(), any(), any(), any())).thenReturn(nScoreboard);
-        Scoreboard output = cricketServiceImp.createMatch(matchDetail);
+        when(playerRepo.findAll()).thenReturn(players);
+        Scoreboard newScoreboard = new Scoreboard();
+        newScoreboard.setScoreBoardId(1);
+        Match newmatch = new Match();
+        when(startMatchServiceImp.startMatch(any(), any(), any(), any(), any(), any())).thenReturn(newScoreboard);
+        when(scoreboardRepo.findByMatchId(anyInt())).thenReturn(Optional.of(newScoreboard));
+        Optional<Scoreboard> output = cricketServiceImp.createMatch(matchDetail);
+        Assertions.assertEquals(newScoreboard,output.get());
 
-        verify(playerRepo).countById(1);
-        verify(playerRepo).countById(2);
-        verify(playerRepo).countById(3);
-        verify(playerRepo).countById(4);
-        verify(playerRepo).countById(5);
-        verify(playerRepo).countById(6);
-        verify(playerRepo).countById(7);
-        verify(playerRepo).countById(8);
-        verify(playerRepo).countById(9);
-        verify(playerRepo).countById(10);
-
-        verify(playerRepo).findById(1);
-        verify(playerRepo).findById(2);
-        verify(playerRepo).findById(3);
-        verify(playerRepo).findById(4);
-        verify(playerRepo).findById(5);
-        verify(playerRepo).findById(6);
-        verify(playerRepo).findById(7);
-        verify(playerRepo).findById(8);
-        verify(playerRepo).findById(9);
-        verify(playerRepo).findById(10);
-        verify(matchDetailRepo).save(matchDetail);
-        assertEquals(output, nScoreboard);
     }
 
 }

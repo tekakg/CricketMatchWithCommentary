@@ -32,6 +32,7 @@ public class StartMatchServiceImp implements StartMatchService {
         scoreboard.setMatchId(match.getId());
         scoreboard.setTeam1(team1);
         scoreboard.setTeam2(team2);
+        scoreboard.setMatchResult(matchWinningTeam);
         scoreboardRepo.save(scoreboard);
         return scoreboard;
     }

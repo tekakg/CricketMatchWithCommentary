@@ -24,6 +24,8 @@ public class MatchDetail {
     private int id;
     private int overs;
     private int playerCount;
+
+    private String matchVenue;
     @Field("Team1Name")
     private String team1Name;
     @Field("Team2Name")

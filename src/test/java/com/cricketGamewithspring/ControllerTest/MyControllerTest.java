@@ -51,9 +51,9 @@ class MyControllerTest {
     @Test
     void setMatch() throws Exception {
         Scoreboard scoreboard = new Scoreboard(10, 10);
-        when(cricketService.createMatch(new MatchDetail())).thenReturn(scoreboard);
+        when(cricketService.createMatch(new MatchDetail())).thenReturn(Optional.of(scoreboard));
         String expectedResult = objectMapper.writeValueAsString(scoreboard);
-        mockMvc.perform(MockMvcRequestBuilders.post("/match-info")
+        mockMvc.perform(MockMvcRequestBuilders.post("/start-match")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(new MatchDetail())))
                 .andExpect(MockMvcResultMatchers.status().isOk())

@@ -1,5 +1,6 @@
 package com.cricketGamewithspring.servicesImpTest;
 
+import com.cricketGamewithspring.cricketGame.Repo.ESRepo.ElasticRepo;
 import com.cricketGamewithspring.cricketGame.Repo.SQLRepo.PlayerRepo;
 import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.servicesImp.PlayerServiceImp;
@@ -34,6 +35,9 @@ class PlayerServiceImpTest {
     @MockBean
     private SequenceGeneratorService sequenceGeneratorService;
 
+    @MockBean
+    private ElasticRepo elasticRepo;
+
     @Test
     void getPlayerUsingRole() throws Exception {
         List<Player> listPlayers = new ArrayList<>();
@@ -54,9 +58,9 @@ class PlayerServiceImpTest {
 
     @Test
     void setPlayer() throws Exception {
-        Player player = new Player(1, "Player1", "Batsman");
-        playerServiceImp.setPlayer(player);
-        verify(playerRepo).save(player);//as save is not returning any thing.
+        Player player1 = new Player(1, "Player1", "Batsman");
+        playerServiceImp.setPlayer(player1);
+        verify(playerRepo).save(player1);
     }
 
     @Test

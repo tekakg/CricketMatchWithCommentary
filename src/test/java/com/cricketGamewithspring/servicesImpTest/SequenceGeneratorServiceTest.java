@@ -33,11 +33,6 @@ public class SequenceGeneratorServiceTest {
         when(mongoOperations.findAndModify((Query) any(), (UpdateDefinition) any(), (Class<Object>) any(), any())).thenReturn(
                 counter);
 
-        // When
-//            int generatedValue = sequenceGeneratorService.generateSequence(seqName);
-
-        // Then
-//            Assertions.assertEquals(generatedValue,2);
     }
 }
 

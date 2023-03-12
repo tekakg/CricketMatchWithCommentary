@@ -9,19 +9,32 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class RunGeneratingServiceImp implements RunGeneratingService {
-    public int generateRun() {
+
+    public RunType generateRunType() {
         int val = (int) (Math.random() * 150);
         if (val > 140)
-            return 7;
-        else if (val > 122 && val < 140)
-            return 6;
-        else if (val > 120 && val < 122)
-            return 5;
+            return RunType.WICKET;
+        else if (val > 130 && val < 140)
+            return RunType.SIX;
+        else if (val == 121)
+            return RunType.FIVE;
+        else if (val >=122 && val<=129)
+            return RunType.WIDE;
+        else if (val==130)
+            return RunType.NOBALL;
         else if (val > 100 && val < 120)
-            return 4;
+            return RunType.FOUR;
         else {
-            int runval = (int) (Math.random() * 4);
-            return runval;
+            int runlevel = (int) (Math.random() * 4);
+
+            if (runlevel == 0)
+                return RunType.ZERO;
+            else if (runlevel == 1)
+                return RunType.ONE;
+            else if (runlevel == 2)
+                return RunType.TWO;
+            else
+                return RunType.THREE;
         }
     }
 }

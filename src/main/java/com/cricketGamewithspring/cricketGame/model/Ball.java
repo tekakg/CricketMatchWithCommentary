@@ -1,5 +1,6 @@
 package com.cricketGamewithspring.cricketGame.model;
 
+import com.cricketGamewithspring.cricketGame.servicesImp.RunType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,17 +15,7 @@ public class Ball {
     private int ballNumber;
     private String bowler;
     private String batsman;
-    private String run;
-    public Ball(int overNumber, int ballNumber, String bowler, String batsman, int run) {
-        this.overNumber = overNumber;
-        this.ballNumber = ballNumber;
-        this.bowler = bowler;
-        this.batsman = batsman;
-        if (run > 6)
-            this.run = "W";
-        else
-            this.run = Integer.toString(run);
-    }
+    private RunType run;
 
     public int getBallNumber() {
         return ballNumber;
@@ -42,8 +33,14 @@ public class Ball {
         return bowler;
     }
 
-    public String getRun() {
+    public RunType getRun() {
         return run;
+    }
+
+    public Ball(int overNumber, int ballNumber)
+    {
+        this.ballNumber=ballNumber;
+        this.overNumber=overNumber;
     }
 }
 

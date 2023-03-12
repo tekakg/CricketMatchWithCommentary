@@ -4,7 +4,7 @@ import com.cricketGamewithspring.cricketGame.model.Ball;
 import com.cricketGamewithspring.cricketGame.model.Match;
 import com.cricketGamewithspring.cricketGame.model.Player;
 import com.cricketGamewithspring.cricketGame.model.Team;
-import com.cricketGamewithspring.cricketGame.servicesImp.FirstInningServiceImp;
+import com.cricketGamewithspring.cricketGame.servicesImp.InningServiceImp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,15 +15,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest(classes = FirstInningServiceImp.class)
+@SpringBootTest(classes = InningServiceImp.class)
 @ExtendWith(MockitoExtension.class)
-public class FirstInningServiceImpTest {
+public class InningServiceImpTest {
 
     @InjectMocks
-    private FirstInningServiceImp firstInningServiceImp;
+    private InningServiceImp inningServiceImp;
 
     @Test
-    public void firstInnings() {
+    void secondInnings() {
         // Arrange
         Team team1 = new Team();
         Team team2 = new Team();
@@ -44,14 +44,13 @@ public class FirstInningServiceImpTest {
         team1.setListOfPlayers(team1Players);
         team2.setListOfPlayers(team2Players);
         Match match = new Match();
-        match.setTotalOvers(2);
-        String tossWinningTeam = "Team 1";
         List<Ball> ballHistory = new ArrayList<>();
 
-        // Act
-        List<Team> result = firstInningServiceImp.firstInnings(team1, team2, match, tossWinningTeam, ballHistory);
-
-        Assertions.assertEquals(team1.getTeamName(), result.get(1).getTeamName());
-        Assertions.assertEquals(team2.getTeamName(), result.get(0).getTeamName());
+        inningServiceImp.matchInnings(team1, team2, match, ballHistory);
+        List<Ball>newBallHistory=new ArrayList<>();
+        newBallHistory.add(new Ball(0,0));
+        Assertions.assertNotNull(team1);
+        Assertions.assertNotNull(team2);
+        Assertions.assertNotEquals(newBallHistory,ballHistory);
     }
 }

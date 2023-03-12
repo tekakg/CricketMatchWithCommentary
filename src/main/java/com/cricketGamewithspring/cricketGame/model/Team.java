@@ -1,6 +1,7 @@
 package com.cricketGamewithspring.cricketGame.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
@@ -16,7 +18,6 @@ public class Team {
     private String teamName;
     private int totalPlayers;
     public List<Player> listOfPlayers = new ArrayList<>();
-
     private int score;
     private int wicket;
     private int overNumber;
@@ -25,11 +26,9 @@ public class Team {
     public void incrementWicket() {
         this.wicket++;
     }
-
     public void incrementRun(int run) {
         this.score += run;
     }
-
     public Player getNewBatsman(Player nonStriker, Team BattingTeam) {
         Player nwPlayer = null;
         for (Player player : BattingTeam.getListOfPlayers()) {

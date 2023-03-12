@@ -11,6 +11,7 @@ import com.cricketGamewithspring.cricketGame.services.MatchDetailService;
 import com.cricketGamewithspring.cricketGame.services.PlayerService;
 import com.cricketGamewithspring.cricketGame.services.ScoreboardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,8 +39,9 @@ public class MyController {
     }
 
     @PostMapping("/start-match")
-    public Scoreboard setMatch(@RequestBody MatchDetail matchDetail) {
-        return cricketService.createMatch(matchDetail);
+    public ResponseEntity <Scoreboard> setMatch(@RequestBody MatchDetail matchDetail) {
+        Optional<Scoreboard>scoreboard= cricketService.createMatch(matchDetail);
+        return ResponseEntity.status(HttpStatus.OK).body(scoreboard.get());
     }
 
     @PostMapping("/set-player-info")
