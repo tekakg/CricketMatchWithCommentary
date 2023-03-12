@@ -15,16 +15,23 @@ import java.util.List;
 @Data
 @Service
 @RequiredArgsConstructor
+// This class is responsible for playing a match between two teams
 public class PlayMatchServiceImp implements PlayMatchService {
 
 
+    // Autowiring InningServiceImp for accessing its methods
     @Autowired
     private InningServiceImp inningServiceImp;
 
+    // This method plays the match between two teams and returns the result
     public String playMatch(Team team1, Team team2, Match match, String tossWinningTeam) {
+
+        // Initializing an empty list to store ball-by-ball commentary
         List<Ball> ballHistory = new ArrayList<>();
-        Team BattingTeam=null;
-        Team BowlingTeam=null;
+
+        // Initializing batting and bowling teams based on the toss result
+        Team BattingTeam = null;
+        Team BowlingTeam = null;
         if (tossWinningTeam == team1.getTeamName()) {
             BattingTeam = team1;
             BowlingTeam = team2;
@@ -32,10 +39,15 @@ public class PlayMatchServiceImp implements PlayMatchService {
             BattingTeam = team2;
             BowlingTeam = team1;
         }
-        inningServiceImp.matchInnings(BattingTeam,BowlingTeam,match,ballHistory);
-        inningServiceImp.matchInnings(BowlingTeam,BattingTeam,match,ballHistory);
+
+        // Running the innings of the batting and bowling team respectively
+        inningServiceImp.matchInnings(BattingTeam, BowlingTeam, match, ballHistory);
+        inningServiceImp.matchInnings(BowlingTeam, BattingTeam, match, ballHistory);
+
+        // Setting the ball-by-ball commentary to the match object
         match.setCommentary((ArrayList<Ball>) ballHistory);
 
+        // Calculating the result of the match based on the scores of the two teams
         String result;
         if (BattingTeam.getScore() > BowlingTeam.getScore()) {
             result = BattingTeam.getTeamName() + " " + "has won the match";
@@ -47,3 +59,4 @@ public class PlayMatchServiceImp implements PlayMatchService {
         return result;
     }
 }
+

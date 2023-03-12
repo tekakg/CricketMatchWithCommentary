@@ -1,4 +1,5 @@
 package com.cricketGamewithspring.cricketGame.servicesImp;
+
 import com.cricketGamewithspring.cricketGame.Repo.MongoRepo.MatchDetailRepo;
 import com.cricketGamewithspring.cricketGame.Repo.MongoRepo.MatchRepo;
 import com.cricketGamewithspring.cricketGame.Repo.SQLRepo.PlayerRepo;
@@ -42,29 +43,41 @@ public class CricketServiceImp implements CricketService {
     private Scoreboard scoreboard;
 
     public Optional<Scoreboard> createMatch(MatchDetail matchDetail) {
+        // Get the player IDs for each team and retrieve all players from the repository
         List<Integer> team1PlayerId = matchDetail.getTeam1Players();
         List<Integer> team2PlayerId = matchDetail.getTeam2Players();
         List<Player> allPlayersInRep = playerRepo.findAll();
+
+        // Validate the match details to ensure they are valid
         ValidateMatchDetails(matchDetail, team1PlayerId, team2PlayerId, allPlayersInRep);
+
+        // Save the match details to the database
         matchDetailRepo.save(matchDetail);
+
+        // Create empty lists to hold player information for each team
         List<Player> team1PlayersInfo = new ArrayList<>();
         List<Player> team2PlayersInfo = new ArrayList<>();
+
+        // Create the two teams using the match details and player information
         Team team1 = this.createTeam1(matchDetail, team1PlayerId, team1PlayersInfo, allPlayersInRep);
         Team team2 = this.createTeam2(matchDetail, team2PlayerId, team2PlayersInfo, allPlayersInRep);
 
+        // Set the total overs for the match and generate unique IDs for the match and scoreboard
         match.setTotalOvers(matchDetail.getOvers());
         match.setId(sequenceGeneratorService.generateSequence(match.SEQUENCE_NAME));
         scoreboard.setScoreBoardId(sequenceGeneratorService.generateSequence(scoreboard.SEQUENCE_NAME));
         scoreboard.setMatchVenue(matchDetail.getMatchVenue());
         scoreboard = startMatchServiceImp.startMatch(team1, team2, match, scoreboard, matchRepo, scoreboardRepo);
+
+        // Update the player statistics for each team
         updatePlayerStats(team1, team2, team1PlayersInfo, team2PlayersInfo);
-        Optional<Scoreboard>newScoreboard=scoreboardRepo.findByMatchId(scoreboard.getMatchId());
+        Optional<Scoreboard> newScoreboard = scoreboardRepo.findByMatchId(scoreboard.getMatchId());
         return newScoreboard;
     }
 
 
+    // It Validate match details.
     private String ValidateMatchDetails(MatchDetail matchDetail, List<Integer> team1PlayerId, List<Integer> team2PlayerId, List<Player> allPlayersInRep) {
-
         ValidateOversAndPlayerCount(matchDetail);
         ValidateTeamSize(matchDetail, team1PlayerId, team2PlayerId);
         ValidateTeam1PlayerId(team1PlayerId, allPlayersInRep);
@@ -125,8 +138,8 @@ public class CricketServiceImp implements CricketService {
 
         List<Player> team1Players = new ArrayList<>();
         Team team1 = Team.builder().teamName(matchDetail.getTeam1Name()).score(0).overNumber(0)
-                                    .ballNumber(0).wicket(0).totalPlayers(matchDetail.getPlayerCount()).
-                                    listOfPlayers(team1Players).build();
+                .ballNumber(0).wicket(0).totalPlayers(matchDetail.getPlayerCount()).
+                listOfPlayers(team1Players).build();
 
         for (int playerId : team1PlayerId) {
             for (Player player : allPlayersInRep) {

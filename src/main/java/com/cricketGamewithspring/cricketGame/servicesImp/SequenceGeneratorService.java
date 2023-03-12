@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @Data
 @Service
 
+// It is generating sequence for all Entities.
 public class SequenceGeneratorService {
     @Autowired
     private MongoOperations mongoOperations;

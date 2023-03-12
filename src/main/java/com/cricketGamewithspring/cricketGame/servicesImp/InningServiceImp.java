@@ -15,6 +15,14 @@ import java.util.List;
 @Data
 @Service
 @RequiredArgsConstructor
+
+/**
+ This method simulates an inning of a cricket match for a given BattingTeam and BowlingTeam.
+ It generates runs for each ball based on the RunGeneratingService implementation.
+ It keeps track of ball history and player statistics like balls faced, wickets taken and runs scored.
+ It also handles the situation of a player getting out, a no-ball or a wide being bowled and a change of bowler.
+ The inning ends when all the overs are completed or all the wickets are taken.
+*/
 public class InningServiceImp implements InningService {
     private static final Integer NO_OF_BALLS_IN_OVER = 6;
 
@@ -30,9 +38,9 @@ public class InningServiceImp implements InningService {
         for (overnum = 0; overnum < match.getTotalOvers(); overnum++) {
             for (ballnum = 0; ballnum < NO_OF_BALLS_IN_OVER; ballnum++) {
                 Bowler.incrementBallsBowled();
-                RunType runtype= runGeneratingService.generateRunType();
-                int run=runtype.getRun();
-                Ball nball = new Ball(overnum, ballnum + 1, Bowler.getName(), Striker.getName(),runtype );
+                RunType runtype = runGeneratingService.generateRunType();
+                int run = runtype.getRun();
+                Ball nball = new Ball(overnum, ballnum + 1, Bowler.getName(), Striker.getName(), runtype);
                 ballHistory.add(nball);
                 if (run == 7) {
                     Striker.incrementBallsFaced();
@@ -50,17 +58,14 @@ public class InningServiceImp implements InningService {
                             }
                         }
                     }
-                }
-                else if(runtype==RunType.NOBALL || runtype==RunType.WIDE)
-                {
+                } else if (runtype == RunType.NOBALL || runtype == RunType.WIDE) {
                     BattingTeam.incrementRun(run);
                     Striker.incrementRun(run);
                     if (BattingTeam.getScore() > BowlingTeam.getScore() && BowlingTeam.getScore() > 0) {
                         inningEnd = 1;
                         break;
                     }
-                }
-                else {
+                } else {
                     BattingTeam.incrementRun(run);
                     Striker.incrementRun(run);
                     Striker.incrementBallsFaced();
@@ -77,7 +82,7 @@ public class InningServiceImp implements InningService {
                 }
             }
             swap(Striker, nonStriker);
-            bowlerChange(BowlingTeam,Bowler);
+            bowlerChange(BowlingTeam, Bowler);
             if (inningEnd == 1) {
                 break;
             }
@@ -86,11 +91,14 @@ public class InningServiceImp implements InningService {
         BattingTeam.setBallNumber(ballnum);
     }
 
+    // It is used to change the strike by swapping players.
     private void swap(Player player1, Player player2) {
         Player temp = player1;
         player1 = player2;
         player2 = temp;
     }
+
+    // This method is used to change the bowler after every over.
     private void bowlerChange(Team BowlingTeam, Player Bowler) {
         int index = BowlingTeam.listOfPlayers.indexOf(Bowler);
         index++;
